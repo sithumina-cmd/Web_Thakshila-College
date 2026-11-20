@@ -1,0 +1,56 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 4 0 R /Resources << /Font << /F1 5 0 R >> >> >>
+endobj
+4 0 obj
+<< /Length 833 >>
+stream
+BT
+/F1 15 Tf
+54 740 Td
+(G.C.E. A/L Physics Unit 01-03 Summary Notes & Formula Sheet) Tj
+/F1 11 Tf
+0 -22 Td
+0 -18 Td
+() Tj
+0 -18 Td
+(Grade: G.C.E. A/L \(Grade 12-13\) | Subject: Physics | Essential Revision Notes) Tj
+0 -18 Td
+(--------------------------------------------------------------------------) Tj
+0 -18 Td
+(Unit 1: Units & Dimensions - Dimensional homogeneity checks, Vernier & Micrometer scales.) Tj
+0 -18 Td
+(Unit 2: Kinematics & Dynamics - Equations of uniform acceleration, Projectile trajectory, Conservation of Momentum.) Tj
+0 -18 Td
+(Unit 3: Work, Energy & Power - Work-Energy theorem, Rotational kinetic energy I*omega^2 / 2.) Tj
+0 -18 Td
+(Unit 4: Waves - Progressive wave equation y = A sin\(wt - kx\), Doppler effect.) Tj
+0 -18 Td
+() Tj
+0 -18 Td
+(Thakshila College - Gampaha | Advanced Level Science Section.) Tj
+ET
+endstream
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+xref
+0 6
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000241 00000 n 
+0000001125 00000 n 
+trailer
+<< /Size 6 /Root 1 0 R >>
+startxref
+1195
+%%EOF

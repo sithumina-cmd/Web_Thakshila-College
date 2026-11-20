@@ -1,0 +1,390 @@
+{
+  "users": [
+    {
+      "id": "dev-master-1",
+      "username": "developer",
+      "role": "developer",
+      "name": "Lead Developer & Master Administrator",
+      "phoneEnc": "3f6fa018602f21578160513e:245810b2dced7d3d2132ba3c329608b7:06d915daf864389fc7b7ac",
+      "gmailEnc": "0bcf12bb3ae18000427156b8:59fd14a087acec5d839376cb65e23707:6ad5862e91e295855705e6845cb9533fd1bed2be9bb385842e30cf48ee",
+      "passwordHash": "3475283819e585b143eca6c6ceecc07d:6a9364945ec357bdab43f4fe6eddf17017174877c6835f63890f0b0595d83d32fca4c22d794cec468d2744818ba6d7dd2153e6ec0657bfbd32d9030cd9afa80c",
+      "pinHash": "3769aa53276ccca9a8e309af2dae3283:4d47e89c99a93531a2f206b1ae020939ec57b8c62c28a7bd187b154aef2439c9b5c7e469bd111c627cd4ba161debb17ed384e68e06b268bc03d3e29f9ca41c6f",
+      "active": true,
+      "createdAt": "2026-11-11T03:29:07.798Z",
+      "lastLoginAt": "2026-11-20T03:02:38.428Z"
+    }
+  ],
+  "studentAccess": {
+    "username": "student",
+    "passwordHash": "d9c2cbe14c4e6dbde3a4562fafea2d12:4458df6b94d2148682deecc9ea1ad94dbb701877a512b7f75d780199e0112477cf518077ed85b5289166a24080301c1d988f1339696a40b6815892fd250ea55b",
+    "updatedAt": "2026-11-11T03:29:07.798Z",
+    "updatedBy": "system"
+  },
+  "sessions": [],
+  "auditLogs": [
+    {
+      "id": "log-5bd9743f-1a3b-4d3e-a948-653ab3e2877a",
+      "timestamp": "2026-11-20T04:18:10.476Z",
+      "action": "LOGOUT",
+      "username": "developer",
+      "name": "Lead Developer & Master Administrator",
+      "role": "developer",
+      "ip": "::ffff:192.168.1.5",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36",
+      "details": "User logged out cleanly"
+    },
+    {
+      "id": "log-c1877f44-b34c-481c-b25b-c592070e63d0",
+      "timestamp": "2026-11-20T03:02:38.431Z",
+      "action": "LOGIN_SUCCESS",
+      "username": "developer",
+      "name": "Lead Developer & Master Administrator",
+      "role": "developer",
+      "ip": "::ffff:192.168.1.5",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36",
+      "details": "Developer Master Authentication Verified"
+    },
+    {
+      "id": "log-d6b30134-0e0d-4d9d-adc5-a75c34efa450",
+      "timestamp": "2026-11-19T07:05:25.618Z",
+      "action": "LOGOUT",
+      "username": "developer",
+      "name": "Lead Developer & Master Administrator",
+      "role": "developer",
+      "ip": "::ffff:192.168.1.5",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36",
+      "details": "User logged out cleanly"
+    },
+    {
+      "id": "log-03f615dd-00f5-4dd2-a776-2bb74addd1da",
+      "timestamp": "2026-11-19T06:37:26.246Z",
+      "action": "LOGIN_SUCCESS",
+      "username": "developer",
+      "name": "Lead Developer & Master Administrator",
+      "role": "developer",
+      "ip": "::ffff:192.168.1.5",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36",
+      "details": "Developer Master Authentication Verified"
+    },
+    {
+      "id": "log-ef514f57-f6c0-405c-bc28-20daadc148d2",
+      "timestamp": "2026-11-18T07:35:32.647Z",
+      "action": "LOGOUT",
+      "username": "developer",
+      "name": "Lead Developer & Master Administrator",
+      "role": "developer",
+      "ip": "::ffff:192.168.1.5",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36",
+      "details": "User logged out cleanly"
+    },
+    {
+      "id": "log-7e01f2f1-f463-49d5-bdec-74c8111be97b",
+      "timestamp": "2026-11-18T06:34:09.314Z",
+      "action": "LOGIN_SUCCESS",
+      "username": "developer",
+      "name": "Lead Developer & Master Administrator",
+      "role": "developer",
+      "ip": "::ffff:192.168.1.5",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36",
+      "details": "Developer Master Authentication Verified"
+    },
+    {
+      "id": "log-94d03c1b-8e18-415e-9552-171794d177be",
+      "timestamp": "2026-11-18T06:29:08.070Z",
+      "action": "LOGIN_LOCKED_BLOCKED",
+      "username": "developer",
+      "name": "Control Desk Attempt",
+      "role": "admin",
+      "ip": "::ffff:192.168.1.5",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36",
+      "details": "Locked out (15m remaining)"
+    },
+    {
+      "id": "log-f981aa1e-55e9-404a-a262-1eac2663d4f5",
+      "timestamp": "2026-11-18T06:29:07.164Z",
+      "action": "LOGIN_LOCKED_BLOCKED",
+      "username": "developer",
+      "name": "Control Desk Attempt",
+      "role": "admin",
+      "ip": "::ffff:192.168.1.5",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36",
+      "details": "Locked out (15m remaining)"
+    },
+    {
+      "id": "log-c318179c-35ee-4fbb-a8a5-f5e40831b5ee",
+      "timestamp": "2026-11-18T06:29:04.650Z",
+      "action": "LOCKOUT_TRIGGERED",
+      "username": "developer",
+      "name": "Lead Developer & Master Administrator",
+      "role": "developer",
+      "ip": "::ffff:192.168.1.5",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36",
+      "details": "Account/IP locked for 15 minutes after 3 failed login attempts"
+    },
+    {
+      "id": "log-035bbf8c-6316-472d-9fd8-fb0be66c7735",
+      "timestamp": "2026-11-18T06:28:54.580Z",
+      "action": "LOGIN_FAILED",
+      "username": "developer",
+      "name": "Lead Developer & Master Administrator",
+      "role": "developer",
+      "ip": "::ffff:192.168.1.5",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36",
+      "details": "Invalid credentials (2/3)"
+    },
+    {
+      "id": "log-64fa1c10-04ab-45d5-a79f-81edd2b886d8",
+      "timestamp": "2026-11-18T06:28:34.940Z",
+      "action": "LOGIN_FAILED",
+      "username": "developer",
+      "name": "Lead Developer & Master Administrator",
+      "role": "developer",
+      "ip": "::ffff:192.168.1.5",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36",
+      "details": "Invalid credentials (1/3)"
+    },
+    {
+      "id": "log-35cf71a4-d5a9-4ef4-a82e-b471f72a066c",
+      "timestamp": "2026-11-18T06:27:08.835Z",
+      "action": "STUDENT_LOCKOUT_BLOCKED",
+      "username": "Dev_sithumina",
+      "name": "Student Portal Visitor",
+      "role": "student",
+      "ip": "::1",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36",
+      "details": "Blocked during 15-min lockout (15m left)"
+    },
+    {
+      "id": "log-3f4782f3-bbfd-49a3-afe1-bb7b97c5f232",
+      "timestamp": "2026-11-18T06:27:08.227Z",
+      "action": "STUDENT_LOCKED",
+      "username": "Dev_sithumina",
+      "name": "Student Login Attempt",
+      "role": "student",
+      "ip": "::1",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36",
+      "details": "Locked for 15 minutes after 3 failed attempts"
+    },
+    {
+      "id": "log-ce871092-5fc7-460d-a256-9281880cccac",
+      "timestamp": "2026-11-18T06:26:32.969Z",
+      "action": "STUDENT_LOGIN_FAILED",
+      "username": "Dev_sithumina",
+      "name": "Student Login Attempt",
+      "role": "student",
+      "ip": "::1",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36",
+      "details": "Failed student login (2/3)"
+    },
+    {
+      "id": "log-fb6e2c66-bf0b-463c-8fbe-3aeaa0049517",
+      "timestamp": "2026-11-18T06:25:58.474Z",
+      "action": "STUDENT_LOGIN_FAILED",
+      "username": "admin",
+      "name": "Student Login Attempt",
+      "role": "student",
+      "ip": "::1",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36",
+      "details": "Failed student login (1/3)"
+    },
+    {
+      "id": "log-4514fe22-915c-40c1-8184-349072b7269b",
+      "timestamp": "2026-11-11T04:05:04.697Z",
+      "action": "STUDENT_LOCKOUT_BLOCKED",
+      "username": "student",
+      "name": "Student Portal Visitor",
+      "role": "student",
+      "ip": "::ffff:192.168.1.3",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36",
+      "details": "Blocked during 15-min lockout (14m left)"
+    },
+    {
+      "id": "log-27938e01-ee31-4ef4-95c0-b77ff24413a5",
+      "timestamp": "2026-11-11T04:04:42.122Z",
+      "action": "STUDENT_LOCKOUT_BLOCKED",
+      "username": "student",
+      "name": "Student Portal Visitor",
+      "role": "student",
+      "ip": "::ffff:192.168.1.3",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36",
+      "details": "Blocked during 15-min lockout (14m left)"
+    },
+    {
+      "id": "log-a5bda58a-593b-4555-89dd-1efe21f5ea41",
+      "timestamp": "2026-11-11T04:04:41.901Z",
+      "action": "STUDENT_LOCKOUT_BLOCKED",
+      "username": "student",
+      "name": "Student Portal Visitor",
+      "role": "student",
+      "ip": "::ffff:192.168.1.3",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36",
+      "details": "Blocked during 15-min lockout (14m left)"
+    },
+    {
+      "id": "log-c41ce9ad-a63c-49a4-8857-52ced25c1e00",
+      "timestamp": "2026-11-11T04:04:41.756Z",
+      "action": "STUDENT_LOCKOUT_BLOCKED",
+      "username": "student",
+      "name": "Student Portal Visitor",
+      "role": "student",
+      "ip": "::ffff:192.168.1.3",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36",
+      "details": "Blocked during 15-min lockout (14m left)"
+    },
+    {
+      "id": "log-ccbde91b-410e-4fda-90e6-aba63d01a99e",
+      "timestamp": "2026-11-11T04:04:41.620Z",
+      "action": "STUDENT_LOCKOUT_BLOCKED",
+      "username": "student",
+      "name": "Student Portal Visitor",
+      "role": "student",
+      "ip": "::ffff:192.168.1.3",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36",
+      "details": "Blocked during 15-min lockout (14m left)"
+    },
+    {
+      "id": "log-fb87b7f6-5356-4055-b90f-329ddc910980",
+      "timestamp": "2026-11-11T04:04:41.449Z",
+      "action": "STUDENT_LOCKOUT_BLOCKED",
+      "username": "student",
+      "name": "Student Portal Visitor",
+      "role": "student",
+      "ip": "::ffff:192.168.1.3",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36",
+      "details": "Blocked during 15-min lockout (14m left)"
+    },
+    {
+      "id": "log-3449aedf-4220-485a-a7e5-c21c3e515e95",
+      "timestamp": "2026-11-11T04:04:41.317Z",
+      "action": "STUDENT_LOCKOUT_BLOCKED",
+      "username": "student",
+      "name": "Student Portal Visitor",
+      "role": "student",
+      "ip": "::ffff:192.168.1.3",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36",
+      "details": "Blocked during 15-min lockout (14m left)"
+    },
+    {
+      "id": "log-761ce5da-c327-4edb-9197-a2a6657b99d5",
+      "timestamp": "2026-11-11T04:04:41.175Z",
+      "action": "STUDENT_LOCKOUT_BLOCKED",
+      "username": "student",
+      "name": "Student Portal Visitor",
+      "role": "student",
+      "ip": "::ffff:192.168.1.3",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36",
+      "details": "Blocked during 15-min lockout (14m left)"
+    },
+    {
+      "id": "log-91fab9c3-8f9b-40f4-a49d-758abbf30fc8",
+      "timestamp": "2026-11-11T04:04:40.573Z",
+      "action": "STUDENT_LOCKOUT_BLOCKED",
+      "username": "student",
+      "name": "Student Portal Visitor",
+      "role": "student",
+      "ip": "::ffff:192.168.1.3",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36",
+      "details": "Blocked during 15-min lockout (14m left)"
+    },
+    {
+      "id": "log-9a522dbb-ac3f-4d25-a878-bc8e2a9318ff",
+      "timestamp": "2026-11-11T04:04:39.655Z",
+      "action": "STUDENT_LOCKOUT_BLOCKED",
+      "username": "student",
+      "name": "Student Portal Visitor",
+      "role": "student",
+      "ip": "::ffff:192.168.1.3",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36",
+      "details": "Blocked during 15-min lockout (15m left)"
+    },
+    {
+      "id": "log-de8ff5c6-bf1b-4102-8511-687c063b661f",
+      "timestamp": "2026-11-11T04:04:37.353Z",
+      "action": "STUDENT_LOCKOUT_BLOCKED",
+      "username": "student",
+      "name": "Student Portal Visitor",
+      "role": "student",
+      "ip": "::ffff:192.168.1.3",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36",
+      "details": "Blocked during 15-min lockout (15m left)"
+    },
+    {
+      "id": "log-3d0dbd20-b60b-43e7-aa4a-c2cbba88fc19",
+      "timestamp": "2026-11-11T04:03:43.798Z",
+      "action": "STUDENT_LOCKOUT_BLOCKED",
+      "username": "student",
+      "name": "Student Portal Visitor",
+      "role": "student",
+      "ip": "::ffff:192.168.1.3",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36",
+      "details": "Blocked during 15-min lockout (15m left)"
+    },
+    {
+      "id": "log-b438ce50-786e-4db3-8cca-8461133f69f5",
+      "timestamp": "2026-11-11T04:03:40.089Z",
+      "action": "STUDENT_LOCKED",
+      "username": "students",
+      "name": "Student Login Attempt",
+      "role": "student",
+      "ip": "::ffff:192.168.1.3",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36",
+      "details": "Locked for 15 minutes after 3 failed attempts"
+    },
+    {
+      "id": "log-e67ade02-dfab-4122-9dd2-ddc75900847a",
+      "timestamp": "2026-11-11T04:03:38.333Z",
+      "action": "STUDENT_LOGIN_FAILED",
+      "username": "students\\",
+      "name": "Student Login Attempt",
+      "role": "student",
+      "ip": "::ffff:192.168.1.3",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36",
+      "details": "Failed student login (2/3)"
+    },
+    {
+      "id": "log-a8d4c67f-80df-4597-a5f4-814b6c5ec406",
+      "timestamp": "2026-11-11T04:03:32.676Z",
+      "action": "STUDENT_LOGIN_FAILED",
+      "username": "student",
+      "name": "Student Login Attempt",
+      "role": "student",
+      "ip": "::ffff:192.168.1.3",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36",
+      "details": "Failed student login (1/3)"
+    },
+    {
+      "id": "log-85ca075a-f4bf-48be-847c-cbce4412d11f",
+      "timestamp": "2026-11-11T03:57:16.723Z",
+      "action": "LOGOUT",
+      "username": "student",
+      "name": "Thakshila Student E-Library",
+      "role": "student",
+      "ip": "::ffff:192.168.1.3",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36",
+      "details": "User logged out cleanly"
+    },
+    {
+      "id": "log-06bedbaf-bfd5-40ab-b21c-960935825e56",
+      "timestamp": "2026-11-11T03:49:11.031Z",
+      "action": "LOGIN_SUCCESS",
+      "username": "student",
+      "name": "Student Portal User",
+      "role": "student",
+      "ip": "::ffff:192.168.1.3",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36",
+      "details": "Logged in to E-Library Student Portal"
+    },
+    {
+      "id": "log-e3f2b4a6-7d6e-4145-9d38-af9dcb9bd0e4",
+      "timestamp": "2026-11-11T03:46:24.801Z",
+      "action": "LOGIN_SUCCESS",
+      "username": "developer",
+      "name": "Lead Developer & Master Administrator",
+      "role": "developer",
+      "ip": "::ffff:192.168.1.3",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36",
+      "details": "Developer Master Authentication Verified"
+    }
+  ],
+  "lockouts": {}
+}
