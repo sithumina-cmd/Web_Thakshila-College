@@ -22,9 +22,9 @@ export default function Footer({
   onOpenLoginModal,
   onOpenEditSettingsModal
 }) {
-  const fbUrl = settings?.facebookUrl || 'https://www.facebook.com/thakshilacollegegampaha/';
-  const ytUrl = settings?.youtubeUrl || 'https://www.youtube.com/@thakshilacollegegampaha';
-  const igUrl = settings?.instagramUrl || 'https://www.instagram.com/thakshilacollegegampaha/';
+  const fbUrl = settings?.facebookUrl || 'https://www.facebook.com/share/1KBZT9itnN/';
+  const ytUrl = settings?.youtubeUrl || 'https://youtube.com/@tcgampaha?si=94tvnmlmrcl787fN';
+  const igUrl = settings?.instagramUrl || 'https://www.instagram.com/tcpas_2k26?vrfl=dzV2cTJyeTcwYnN6';
   const ttUrl = settings?.tiktokUrl || 'https://www.tiktok.com/@tcpas4?_r=1&_t=ZS-9BMgUcXCMxYn';
 
   const goTab = (tab) => {
@@ -179,16 +179,16 @@ export default function Footer({
               className="footer-map-link"
               title="Open location in Google Maps"
             >
-              {settings.address || 'Colombo Road, Gampaha, Sri Lanka'}
+              {settings.address || 'GM/ Thakshila College, Sribhodi Road, Gampaha.'}
             </a>
           </div>
           <div className="footer-contact-item">
             <Phone size={16} />
-            <span>{settings.contactPhone || '033-2222345'}</span>
+            <span>{settings.contactPhone || '0332224752'}</span>
           </div>
           <div className="footer-contact-item">
             <Mail size={16} />
-            <span>{settings.contactEmail || 'info@thakshilacollege.lk'}</span>
+            <span>{settings.contactEmail || 'gmthakshilav@gmail.com'}</span>
           </div>
         </div>
       </div>

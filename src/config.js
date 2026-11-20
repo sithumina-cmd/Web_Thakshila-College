@@ -26,14 +26,14 @@ export const DEFAULT_SCHOOL_CONFIG = {
   productivityLogo: '/Pictures/Productivity Logo.png',
 
   // Key Highlights & Statistics Strip (Editable)
-  stat1Number: '4,200+',
+  stat1Number: '2000+',
   stat1Label: 'Students Enrolled',
-  stat2Number: '185+',
-  stat2Label: 'Academic Faculty',
+  stat2Number: '95',
+  stat2Label: 'Teachers',
   stat3Number: '4 Houses',
-  stat3Label: 'Vijaya, Gemunu, Parakrama, Tissa',
-  stat4Number: '98.5%',
-  stat4Label: 'O/L & A/L Pass Rate',
+  stat3Label: 'Agra, Advi, Anupa, Anabi',
+  stat4Number: '2 Place',
+  stat4Label: 'Productivity in Sri Lanka',
 
   // Vision & Mission (Editable by Admin)
   vision:
@@ -42,18 +42,18 @@ export const DEFAULT_SCHOOL_CONFIG = {
     'ගුණාත්මක ඉගෙනුම් ඉගැන්වීම් ක්‍රියාවලියක් තුළ විෂය සමගාමී හා බාහිර ක්‍රියාකාරකම් සපුරාලමින් පරිසරය සුරකින අනාගත අභියෝග ජයගත හැකි, මනා පෞරුෂයකින් හෙබි, විනයගරුක, නීතිගරුක, අභිමානවත් සිසු පරපුරක් දේශයට දායාද කිරීම.',
 
   // Contact Details
-  contactPhone: '033-2222345',
-  contactEmail: 'info@thakshilacollege.lk',
-  address: 'Colombo Road, Gampaha, Sri Lanka',
+  contactPhone: '0332224752',
+  contactEmail: 'gmthakshilav@gmail.com',
+  address: 'GM/ Thakshila College, Sribhodi Road, Gampaha.',
   officeHours: 'Monday - Friday: 7:30 AM - 3:30 PM',
   mapUrl: 'https://maps.app.goo.gl/atoGq8QgbxSFTxJz8',
   mapEmbedUrl:
     'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3959.8787723223024!2d80.01056977499879!3d7.088374692914777!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae2fc0be9724aa5%3A0x80b5b20f8d6fc5ee!2sThakshila%20College%20Gampaha!5e0!3m2!1sen!2slk!4v1731220000000!5m2!1sen!2slk',
 
   // Official Social Media Channels (Editable)
-  facebookUrl: 'https://www.facebook.com/thakshilacollegegampaha/',
-  youtubeUrl: 'https://www.youtube.com/@thakshilacollegegampaha',
-  instagramUrl: 'https://www.instagram.com/thakshilacollegegampaha/',
+  facebookUrl: 'https://www.facebook.com/share/1KBZT9itnN/',
+  youtubeUrl: 'https://youtube.com/@tcgampaha?si=94tvnmlmrcl787fN',
+  instagramUrl: 'https://www.instagram.com/tcpas_2k26?vrfl=dzV2cTJyeTcwYnN6',
   tiktokUrl: 'https://www.tiktok.com/@tcpas4?_r=1&_t=ZS-9BMgUcXCMxYn',
 
   // College Flag Spotlight (Editable by Admin)
@@ -105,7 +105,7 @@ export const DEFAULT_SCHOOL_CONFIG = {
   // 3. Principal's Message
   principalName: 'Mr. T. M. Premawansa',
   principalDesignation: 'Principal — Thakshila College, Gampaha',
-  principalMessageImage: '/Pictures/principal-office-1.jpg',
+  principalMessageImage: '/Pictures/principal-desk-uploaded.png',
   principalMessageTitle: "A Warm Welcome from the Principal's Desk",
   principalMessage:
     "      There is a feeling of great pride that Thakshila College is a leading school among the schools located within the Gampaha Municipal limits, and a school that has come forward within a short history.\n\n      Started thirty-five years ago with only three classes, Thakshila College today is a school with six parallel classes each from Grade 6 to Grade 11, and with Science, Mathematics, Commerce and Arts streams for Advanced Level. Classes are also conducted in the English medium in every section, and nearly two thousand four hundred students study here annually.\n\n      It is a great pleasure that the achievements of our children, as the main mixed school in Gampaha town, remain at a high level. Also, the children of Thakshila also contribute to the various occasions of our neighbouring sister schools. Thakshila is blessed with group of children who passes not only academic excellence but also. many extra curricular abilities.\n\n      Within It's short school history, Mother Thakshila has been able to produce a group representing various fields of the country. It is a great honour to the school that children, as old students, continue to keep the school proudly in high place.\n\n      Even though the school is located in a place with limited space and facilities, the school community works to take the school forward, considering it not as an obstacle but as a pride. Serving as a teacher of this school is considered a pride by every teacher. As a result of that spirit in the year 2026, the school was able to win second place in the Advanced Level school's section of the National Productivity Competition.\n\n      Environmentally and in waste management too, Thakshila College provides an example to many institutions. That pride of Thakshila, a school with a high demand among the people of the area, will remain in the future. It is special that the annual commemoration of the school has also been organized for several years as an example to many schools. Making the area around Gampaha a place free of garbage, and helping underprevileged schools are also part of it.\n\n      Best wishes for the proud journey of Thakshila.",

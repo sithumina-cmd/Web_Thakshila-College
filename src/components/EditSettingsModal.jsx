@@ -84,31 +84,31 @@ export default function EditSettingsModal({
           'Empowering generations of disciplined, innovative, and visionary leaders. Welcome to the official web portal of Thakshila College - Gampaha.',
         heroImage: settings.heroImage || '/Pictures/Front of School.jpeg',
         schoolLogo: settings.schoolLogo || '/Pictures/School logo.jpeg',
-        stat1Number: settings.stat1Number || '4,200+',
+        stat1Number: settings.stat1Number || '2000+',
         stat1Label: settings.stat1Label || 'Students Enrolled',
-        stat2Number: settings.stat2Number || '185+',
-        stat2Label: settings.stat2Label || 'Academic Faculty',
+        stat2Number: settings.stat2Number || '95',
+        stat2Label: settings.stat2Label || 'Teachers',
         stat3Number: settings.stat3Number || '4 Houses',
-        stat3Label: settings.stat3Label || 'Vijaya, Gemunu, Parakrama, Tissa',
-        stat4Number: settings.stat4Number || '98.5%',
-        stat4Label: settings.stat4Label || 'O/L & A/L Pass Rate',
+        stat3Label: settings.stat3Label || 'Agra, Advi, Anupa, Anabi',
+        stat4Number: settings.stat4Number || '2 Place',
+        stat4Label: settings.stat4Label || 'Productivity in Sri Lanka',
         vision:
           settings.vision ||
           'ද්වීතියික අධ්‍යාපනයේ අරමුණු හා පරමාර්ථ අංගසම්පූර්ණ ලෙස ඉටුකර ගන්නා විශිෂ්ට පාසලක්',
         mission:
           settings.mission ||
           'ගුණාත්මක ඉගෙනුම් ඉගැන්වීම් ක්‍රියාවලියක් තුළ විෂය සමගාමී හා බාහිර ක්‍රියාකාරකම් සපුරාලමින් පරිසරය සුරකින අනාගත අභියෝග ජයගත හැකි, මනා පෞරුෂයකින් හෙබි, විනයගරුක, නීතිගරුක, අභිමානවත් සිසු පරපුරක් දේශයට දායාද කිරීම.',
-        contactPhone: settings.contactPhone || '033-2222345',
-        contactEmail: settings.contactEmail || 'info@thakshilacollege.lk',
-        address: settings.address || 'Colombo Road, Gampaha, Sri Lanka',
+        contactPhone: settings.contactPhone || '0332224752',
+        contactEmail: settings.contactEmail || 'gmthakshilav@gmail.com',
+        address: settings.address || 'GM/ Thakshila College, Sribhodi Road, Gampaha.',
         officeHours: settings.officeHours || 'Monday - Friday: 7:30 AM - 3:30 PM',
         mapUrl: settings.mapUrl || 'https://maps.app.goo.gl/atoGq8QgbxSFTxJz8',
         mapEmbedUrl:
           settings.mapEmbedUrl ||
           'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3959.8787723223024!2d80.01056977499879!3d7.088374692914777!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae2fc0be9724aa5%3A0x80b5b20f8d6fc5ee!2sThakshila%20College%20Gampaha!5e0!3m2!1sen!2slk!4v1731220000000!5m2!1sen!2slk',
-        facebookUrl: settings.facebookUrl || 'https://www.facebook.com/thakshilacollegegampaha/',
-        youtubeUrl: settings.youtubeUrl || 'https://www.youtube.com/@thakshilacollegegampaha',
-        instagramUrl: settings.instagramUrl || 'https://www.instagram.com/thakshilacollegegampaha/',
+        facebookUrl: settings.facebookUrl || 'https://www.facebook.com/share/1KBZT9itnN/',
+        youtubeUrl: settings.youtubeUrl || 'https://youtube.com/@tcgampaha?si=94tvnmlmrcl787fN',
+        instagramUrl: settings.instagramUrl || 'https://www.instagram.com/tcpas_2k26?vrfl=dzV2cTJyeTcwYnN6',
         tiktokUrl: settings.tiktokUrl || 'https://www.tiktok.com/@tcpas4?_r=1&_t=ZS-9BMgUcXCMxYn',
         flagImage: settings.flagImage || '/Pictures/School Flag.jpeg',
         flagTitle: settings.flagTitle || 'The College Flag — Symbol of Pride & Valour',
@@ -307,7 +307,7 @@ export default function EditSettingsModal({
                   name="stat1Number"
                   value={formData.stat1Number}
                   onChange={handleChange}
-                  placeholder="4,200+"
+                  placeholder="2000+"
                 />
               </div>
               <div className="meta-field">
@@ -328,7 +328,7 @@ export default function EditSettingsModal({
                   name="stat2Number"
                   value={formData.stat2Number}
                   onChange={handleChange}
-                  placeholder="185+"
+                  placeholder="95"
                 />
               </div>
               <div className="meta-field">
@@ -338,7 +338,7 @@ export default function EditSettingsModal({
                   name="stat2Label"
                   value={formData.stat2Label}
                   onChange={handleChange}
-                  placeholder="Academic Faculty"
+                  placeholder="Teachers"
                 />
               </div>
 
@@ -359,7 +359,7 @@ export default function EditSettingsModal({
                   name="stat3Label"
                   value={formData.stat3Label}
                   onChange={handleChange}
-                  placeholder="Vijaya, Gemunu, Parakrama, Tissa"
+                  placeholder="Agra, Advi, Anupa, Anabi"
                 />
               </div>
 
@@ -370,7 +370,7 @@ export default function EditSettingsModal({
                   name="stat4Number"
                   value={formData.stat4Number}
                   onChange={handleChange}
-                  placeholder="98.5%"
+                  placeholder="2 Place"
                 />
               </div>
               <div className="meta-field">
@@ -380,7 +380,7 @@ export default function EditSettingsModal({
                   name="stat4Label"
                   value={formData.stat4Label}
                   onChange={handleChange}
-                  placeholder="O/L & A/L Pass Rate"
+                  placeholder="Productivity in Sri Lanka"
                 />
               </div>
             </div>
@@ -428,7 +428,7 @@ export default function EditSettingsModal({
                   name="contactPhone"
                   value={formData.contactPhone}
                   onChange={handleChange}
-                  placeholder="033-2222345"
+                  placeholder="0332224752"
                 />
               </div>
               <div className="meta-field">
@@ -440,7 +440,7 @@ export default function EditSettingsModal({
                   name="contactEmail"
                   value={formData.contactEmail}
                   onChange={handleChange}
-                  placeholder="info@thakshilacollege.lk"
+                  placeholder="gmthakshilav@gmail.com"
                 />
               </div>
             </div>
@@ -453,7 +453,7 @@ export default function EditSettingsModal({
                 name="address"
                 value={formData.address}
                 onChange={handleChange}
-                placeholder="Colombo Road, Gampaha, Sri Lanka"
+                placeholder="GM/ Thakshila College, Sribhodi Road, Gampaha."
               />
             </div>
             <div className="meta-field" style={{ marginTop: '8px' }}>

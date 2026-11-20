@@ -126,7 +126,8 @@ export default function App() {
     async function loadData() {
       try {
         const res = await fetch('/api/data');
-        if (res.ok) {
+        const cType = res.headers.get('content-type') || '';
+        if (res.ok && cType.includes('application/json')) {
           const data = await res.json();
           if (data.settings && Object.keys(data.settings).length > 0) {
             setSettings((prev) => ({ ...DEFAULT_SCHOOL_CONFIG, ...prev, ...data.settings }));

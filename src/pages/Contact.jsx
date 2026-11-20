@@ -23,9 +23,9 @@ export default function Contact({
   isEditMode,
   onOpenEditSettingsModal
 }) {
-  const fbUrl = settings?.facebookUrl || 'https://www.facebook.com/thakshilacollegegampaha/';
-  const ytUrl = settings?.youtubeUrl || 'https://www.youtube.com/@thakshilacollegegampaha';
-  const igUrl = settings?.instagramUrl || 'https://www.instagram.com/thakshilacollegegampaha/';
+  const fbUrl = settings?.facebookUrl || 'https://www.facebook.com/share/1KBZT9itnN/';
+  const ytUrl = settings?.youtubeUrl || 'https://youtube.com/@tcgampaha?si=94tvnmlmrcl787fN';
+  const igUrl = settings?.instagramUrl || 'https://www.instagram.com/tcpas_2k26?vrfl=dzV2cTJyeTcwYnN6';
   const ttUrl = settings?.tiktokUrl || 'https://www.tiktok.com/@tcpas4?_r=1&_t=ZS-9BMgUcXCMxYn';
 
   const [formData, setFormData] = useState({
@@ -118,7 +118,7 @@ export default function Contact({
               </span>
               <h1>Contact Us</h1>
               <p className="subpage-si-title">
-                Thakshila College - Gampaha | Colombo Road, Gampaha
+                Thakshila College - Gampaha | Sribhodi Road, Gampaha
               </p>
             </div>
           </div>
@@ -285,7 +285,7 @@ export default function Contact({
                 </div>
                 <div>
                   <strong>Address</strong>
-                  <p>{settings.address || 'Colombo Road, Gampaha, Sri Lanka'}</p>
+                  <p>{settings.address || 'GM/ Thakshila College, Sribhodi Road, Gampaha.'}</p>
                   <a
                     href={settings.mapUrl || 'https://maps.app.goo.gl/atoGq8QgbxSFTxJz8'}
                     target="_blank"
@@ -305,7 +305,7 @@ export default function Contact({
                 </div>
                 <div>
                   <strong>Phone Number</strong>
-                  <p>{settings.contactPhone || '033-2222345'}</p>
+                  <p>{settings.contactPhone || '0332224752'}</p>
                 </div>
               </div>
 
@@ -315,7 +315,7 @@ export default function Contact({
                 </div>
                 <div>
                   <strong>Email Address</strong>
-                  <p>{settings.contactEmail || 'info@thakshilacollege.lk'}</p>
+                  <p>{settings.contactEmail || 'gmthakshilav@gmail.com'}</p>
                 </div>
               </div>
 

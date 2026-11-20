@@ -126,29 +126,29 @@ export default function Home({
             <div className="hero-stat-card">
               <Users size={19} className="stat-gold-icon" />
               <div>
-                <div className="hero-stat-num">{settings.stat1Number || '4,200+'}</div>
+                <div className="hero-stat-num">{settings.stat1Number || '2000+'}</div>
                 <div className="hero-stat-lbl">{settings.stat1Label || 'Students Enrolled'}</div>
               </div>
             </div>
             <div className="hero-stat-card">
               <BookOpen size={19} className="stat-gold-icon" />
               <div>
-                <div className="hero-stat-num">{settings.stat2Number || '185+'}</div>
-                <div className="hero-stat-lbl">{settings.stat2Label || 'Academic Faculty'}</div>
+                <div className="hero-stat-num">{settings.stat2Number || '95'}</div>
+                <div className="hero-stat-lbl">{settings.stat2Label || 'Teachers'}</div>
               </div>
             </div>
             <div className="hero-stat-card">
               <Trophy size={19} className="stat-gold-icon" />
               <div>
                 <div className="hero-stat-num">{settings.stat3Number || '4 Houses'}</div>
-                <div className="hero-stat-lbl">{settings.stat3Label || 'Vijaya, Gemunu, Parakrama, Tissa'}</div>
+                <div className="hero-stat-lbl">{settings.stat3Label || 'Agra, Advi, Anupa, Anabi'}</div>
               </div>
             </div>
             <div className="hero-stat-card">
               <Award size={19} className="stat-gold-icon" />
               <div>
-                <div className="hero-stat-num">{settings.stat4Number || '98.5%'}</div>
-                <div className="hero-stat-lbl">{settings.stat4Label || 'O/L & A/L Pass Rate'}</div>
+                <div className="hero-stat-num">{settings.stat4Number || '2 Place'}</div>
+                <div className="hero-stat-lbl">{settings.stat4Label || 'Productivity in Sri Lanka'}</div>
               </div>
             </div>
           </div>
