@@ -14,8 +14,8 @@ export default defineConfig({
     {
       name: 'thakshila-express-api',
       configureServer(server) {
-        // Serve /Pictures directly from workspace Pictures directory
-        const picturesPath = path.join(__dirname, 'Pictures');
+        // Serve /Pictures directly from public/Pictures directory
+        const picturesPath = path.join(__dirname, 'public', 'Pictures');
         server.middlewares.use('/Pictures', express.static(picturesPath));
 
         // Serve REST API

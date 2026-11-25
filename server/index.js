@@ -12,8 +12,8 @@ const app = express();
 // Mount REST API
 app.use(apiApp);
 
-// Explicitly serve /Pictures from workspace Pictures folder
-const picturesPath = path.join(__dirname, '..', 'Pictures');
+// Explicitly serve /Pictures from workspace public/Pictures folder
+const picturesPath = path.join(__dirname, '..', 'public', 'Pictures');
 app.use('/Pictures', express.static(picturesPath));
 
 // Serve built React frontend if available
