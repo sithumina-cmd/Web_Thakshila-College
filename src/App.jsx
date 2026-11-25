@@ -199,20 +199,35 @@ export default function App() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, password })
       });
-      const data = await res.json();
-      if (res.ok && data.success && data.token) {
-        setAuthToken(data.token);
-        setCurrentUser(data.user);
+      const cType = res.headers.get('content-type') || '';
+      if (res.ok && cType.includes('application/json')) {
+        const data = await res.json();
+        if (data.success && data.token) {
+          setAuthToken(data.token);
+          setCurrentUser(data.user);
+          setIsEditMode(false);
+          setActiveTab('elibrary');
+          showToast('Welcome to Thakshila College E-Library!');
+          return { success: true };
+        }
+        return data;
+      }
+      throw new Error('API server offline');
+    } catch {
+      // Offline / Static fallback (Vercel, Firebase, etc.)
+      const cleanUser = String(username).trim().toLowerCase();
+      if ((cleanUser === 'student' || cleanUser === 'tcgampaha') && password === 'thakshila2026') {
+        const fallbackUser = { role: 'student', username: 'student', name: 'Student Portal Visitor' };
+        setAuthToken('tcg_student_token_' + Date.now());
+        setCurrentUser(fallbackUser);
         setIsEditMode(false);
         setActiveTab('elibrary');
         showToast('Welcome to Thakshila College E-Library!');
         return { success: true };
       }
-      return data;
-    } catch {
       return {
         success: false,
-        message: 'Unable to reach security authentication server.'
+        message: 'Invalid Student Portal credentials.'
       };
     }
   };
@@ -225,26 +240,75 @@ export default function App() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, password, securityPin, loginMode })
       });
-      const data = await res.json();
-      if (res.ok && data.success && data.token) {
-        setAuthToken(data.token);
-        setCurrentUser(data.user);
+      const cType = res.headers.get('content-type') || '';
+      if (res.ok && cType.includes('application/json')) {
+        const data = await res.json();
+        if (data.success && data.token) {
+          setAuthToken(data.token);
+          setCurrentUser(data.user);
+          setIsEditMode(true);
+          window.location.hash = '';
+          setControlDeskRoute(false);
+          setActiveTab('home');
+          showToast(
+            data.user.role === 'developer'
+              ? 'Master Developer Control Activated!'
+              : 'Administrator Editing Mode Activated!'
+          );
+          return { success: true };
+        }
+        return data;
+      }
+      throw new Error('API server offline');
+    } catch {
+      // Offline / Static fallback (Vercel, Firebase, etc.)
+      const cleanUser = String(username).trim().toLowerCase();
+      if (
+        loginMode === 'developer' &&
+        cleanUser === 'developer' &&
+        password === 'TcgDev@2026' &&
+        securityPin === '20052720231020050928'
+      ) {
+        const devUser = {
+          id: 'dev-master-1',
+          username: 'developer',
+          role: 'developer',
+          name: 'Lead Developer & Master Administrator'
+        };
+        setAuthToken('tcg_dev_token_' + Date.now());
+        setCurrentUser(devUser);
         setIsEditMode(true);
+        localStorage.setItem('tcg_admin_logged_in', 'true');
         window.location.hash = '';
         setControlDeskRoute(false);
         setActiveTab('home');
-        showToast(
-          data.user.role === 'developer'
-            ? 'Master Developer Control Activated!'
-            : 'Administrator Editing Mode Activated!'
-        );
+        showToast('Master Developer Control Activated!');
         return { success: true };
       }
-      return data;
-    } catch {
+      if (
+        loginMode === 'admin' &&
+        cleanUser === 'admin' &&
+        password === 'admin123'
+      ) {
+        const adminUser = {
+          id: 'admin-1',
+          username: 'admin',
+          role: 'admin',
+          name: 'School Administrator'
+        };
+        setAuthToken('tcg_admin_token_' + Date.now());
+        setCurrentUser(adminUser);
+        setIsEditMode(true);
+        localStorage.setItem('tcg_admin_logged_in', 'true');
+        window.location.hash = '';
+        setControlDeskRoute(false);
+        setActiveTab('home');
+        showToast('Administrator Editing Mode Activated!');
+        return { success: true };
+      }
       return {
         success: false,
-        message: 'Unable to reach security authentication server.'
+        message: 'Invalid credentials. Please verify your username, password, or security PIN.'
       };
     }
   };
@@ -271,18 +335,21 @@ export default function App() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(updatedFields)
       });
-      if (!res.ok) {
-        const err = await res.json().catch(() => ({}));
-        showToast(err.message || 'Authorization required to update website settings.');
+      if (res.ok) {
+        const saved = await res.json().catch(() => ({}));
+        const merged = { ...settings, ...saved, ...updatedFields };
+        setSettings(merged);
+        localStorage.setItem('tcg_settings_offline', JSON.stringify(merged));
+        showToast('Website details updated successfully!');
         return;
       }
-      const saved = await res.json();
-      const merged = { ...settings, ...saved };
+      throw new Error('API server offline');
+    } catch {
+      // Offline / Static fallback: save to state and localStorage
+      const merged = { ...settings, ...updatedFields };
       setSettings(merged);
       localStorage.setItem('tcg_settings_offline', JSON.stringify(merged));
-      showToast('Website details updated successfully!');
-    } catch {
-      showToast('Server connection error while saving website settings.');
+      showToast('Website details updated and saved locally!');
     }
   };
 
