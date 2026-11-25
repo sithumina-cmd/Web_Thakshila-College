@@ -62,6 +62,34 @@ export const DEFAULT_SCHOOL_CONFIG = {
   flagCaption:
     'Fluttering proudly in maroon and gold, the Thakshila College flag embodies decades of academic excellence, discipline, and noble Buddhist traditions. It stands as a beacon of honor and wisdom for generations of Thakshilians.',
 
+  // National Productivity Awards 2nd Place Win Spotlight (Home & About)
+  productivityTitle: 'National Productivity Awards — 2nd Place in Sri Lanka',
+  productivitySubtitle: 'Advanced Level Schools Category | National Productivity Secretariat',
+  productivitySinhalaTitle: 'ජාතික ඵලදායිතා සම්මාන — සමස්ත ලංකා දෙවන ස්ථානය',
+  productivityVideoUrl: 'https://youtu.be/r1cWbnvVHao?si=qMkAmTCHn8aDzW_H',
+  productivityDesc:
+    'Gampaha Thakshila College proudly achieved All-Island 2nd Place in the Advanced Level Schools category at the prestigious National Productivity Awards Competition organized by the National Productivity Secretariat. This distinguished honour celebrates our vibrant 5S productivity culture, sustainable eco-friendly campus environment, cutting-edge facilities, and disciplined student community.',
+  productivityPhotos: [
+    {
+      id: 'prod-photo-1',
+      url: '/Pictures/Front of School.jpeg',
+      title: 'Exemplary 5S Green Campus',
+      caption: 'Main entrance and modern academic premises maintained with pristine cleanliness and order.'
+    },
+    {
+      id: 'prod-photo-2',
+      url: '/Pictures/Productivity Logo.png',
+      title: 'National Productivity Emblem',
+      caption: 'The proud symbol of All-Island distinction, productivity excellence, and continuous improvement.'
+    },
+    {
+      id: 'prod-photo-3',
+      url: '/Pictures/School Flag.jpeg',
+      title: 'Honor, Pride & Valour',
+      caption: 'Thakshila College colors fluttering high in national collegiate distinction.'
+    }
+  ],
+
   // ==========================================================
   // ABOUT PAGE: 6 STRUCTURED SECTIONS (ALL EDITABLE BY ADMIN)
   // ==========================================================

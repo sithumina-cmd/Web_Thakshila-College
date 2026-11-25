@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   BookMarked,
   Newspaper,
@@ -15,10 +15,19 @@ import {
   Compass,
   PlusCircle,
   Calendar,
-  Medal
+  Medal,
+  Video,
+  ExternalLink,
+  Leaf,
+  CheckCircle2,
+  Camera,
+  X,
+  Maximize2
 } from 'lucide-react';
 import SchoolCrest from '../components/SchoolCrest';
 import PostCard from '../components/PostCard';
+import EditProductivityModal, { getYouTubeEmbedUrl } from '../components/EditProductivityModal';
+import { DEFAULT_SCHOOL_CONFIG } from '../config';
 
 export default function Home({
   settings,
@@ -39,13 +48,22 @@ export default function Home({
   onOpenCreateDiaryModal,
   onOpenEditSettingsModal,
   onOpenLoginModal,
+  onSaveSettings,
   setActiveTab
 }) {
+  const [isProductivityModalOpen, setIsProductivityModalOpen] = useState(false);
+  const [selectedLightboxPhoto, setSelectedLightboxPhoto] = useState(null);
+
   const latestNews = (news || []).slice(0, 3);
   const latestSports = (sports || []).slice(0, 3);
   const latestDiary = (diary || []).slice(0, 3);
 
   const heroBg = settings.heroImage || '/Pictures/Front of School.jpeg';
+
+  const prodPhotos =
+    Array.isArray(settings.productivityPhotos) && settings.productivityPhotos.length > 0
+      ? settings.productivityPhotos
+      : DEFAULT_SCHOOL_CONFIG.productivityPhotos || [];
 
   return (
     <div className="page-home">
@@ -268,6 +286,166 @@ export default function Home({
               {settings.mission ||
                 'ගුණාත්මක ඉගෙනුම් ඉගැන්වීම් ක්‍රියාවලියක් තුළ විෂය සමගාමී හා බාහිර ක්‍රියාකාරකම් සපුරාලමින් පරිසරය සුරකින අනාගත අභියෝග ජයගත හැකි, මනා පෞරුෂයකින් හෙබි, විනයගරුක, නීතිගරුක, අභිමානවත් සිසු පරපුරක් දේශයට දායාද කිරීම.'}
             </p>
+          </div>
+        </div>
+      </section>
+
+      {/* 
+        ============================================================
+        NATIONAL PRODUCTIVITY AWARDS 2ND PLACE WIN SPOTLIGHT
+        ============================================================
+      */}
+      <section className="home-productivity-showcase-section container">
+        <div className="productivity-showcase-card">
+          {/* Header Bar with Distinction Ribbon & Admin Button */}
+          <div className="productivity-showcase-header">
+            <div className="productivity-badge-cluster">
+              <span className="prod-gold-ribbon">
+                <Trophy size={16} /> ALL-ISLAND DISTINCTION • සමස්ත ලංකා දෙවන ස්ථානය
+              </span>
+              <span className="prod-secretariat-pill">
+                <Sparkles size={13} /> National Productivity Secretariat 2025/2026
+              </span>
+            </div>
+
+            {isAdmin && isEditMode && (
+              <button
+                type="button"
+                className="btn-admin-manage-prod"
+                onClick={() => setIsProductivityModalOpen(true)}
+              >
+                <Edit size={14} />
+                <span>Manage Productivity Win &amp; Photos</span>
+              </button>
+            )}
+          </div>
+
+          <div className="productivity-title-block">
+            <h2 className="productivity-main-title">
+              {settings.productivityTitle || 'National Productivity Awards — 2nd Place in Sri Lanka'}
+            </h2>
+            <p className="productivity-si-title">
+              {settings.productivitySinhalaTitle || 'ජාතික ඵලදායිතා සම්මාන — සමස්ත ලංකා දෙවන ස්ථානය'}
+            </p>
+            <p className="productivity-subtitle-text">
+              {settings.productivitySubtitle || 'Advanced Level Schools Category | National Productivity Secretariat'}
+            </p>
+          </div>
+
+          {/* Dual Showcase Grid: Video Player + Story & Pillars */}
+          <div className="productivity-content-grid">
+            {/* Left: Responsive Cinema Video Player */}
+            <div className="productivity-video-col">
+              <div className="productivity-video-frame">
+                <iframe
+                  src={getYouTubeEmbedUrl(settings.productivityVideoUrl || 'https://youtu.be/r1cWbnvVHao?si=qMkAmTCHn8aDzW_H')}
+                  title="Thakshila College National Productivity Award Celebration Video"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                  className="productivity-iframe"
+                />
+              </div>
+              <div className="productivity-video-bar">
+                <span className="video-tag">
+                  <Video size={14} /> Official Documentary &amp; Award Presentation
+                </span>
+                <a
+                  href={settings.productivityVideoUrl || 'https://youtu.be/r1cWbnvVHao?si=qMkAmTCHn8aDzW_H'}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="video-watch-link"
+                  title="Open video in YouTube"
+                >
+                  <span>Watch on YouTube</span>
+                  <ExternalLink size={13} />
+                </a>
+              </div>
+            </div>
+
+            {/* Right: Victory Narrative & Key Pillars */}
+            <div className="productivity-narrative-col">
+              <p className="productivity-lead-para">
+                {settings.productivityDesc ||
+                  'Gampaha Thakshila College proudly achieved All-Island 2nd Place in the Advanced Level Schools category at the prestigious National Productivity Awards Competition organized by the National Productivity Secretariat. This distinguished honour celebrates our vibrant 5S productivity culture, sustainable eco-friendly campus environment, cutting-edge facilities, and disciplined student community.'}
+              </p>
+
+              <div className="productivity-pillars-grid">
+                <div className="prod-pillar-card">
+                  <div className="pillar-icon">
+                    <CheckCircle2 size={18} />
+                  </div>
+                  <div>
+                    <strong>Exemplary 5S Culture</strong>
+                    <p>Systematic order, cleanliness, discipline, and waste management across all collegiate sections.</p>
+                  </div>
+                </div>
+                <div className="prod-pillar-card">
+                  <div className="pillar-icon">
+                    <Leaf size={18} />
+                  </div>
+                  <div>
+                    <strong>Sustainable Green Campus</strong>
+                    <p>Eco-friendly, beautifully maintained premises maintained with pride by teachers, parents, and students.</p>
+                  </div>
+                </div>
+                <div className="prod-pillar-card">
+                  <div className="pillar-icon">
+                    <Award size={18} />
+                  </div>
+                  <div>
+                    <strong>National 1AB Distinction</strong>
+                    <p>Recognized across the entire island among leading collegiate institutions in Sri Lanka.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Victory Photo Gallery Section */}
+          <div className="productivity-gallery-section">
+            <div className="prod-gallery-header">
+              <div>
+                <h3>
+                  <Camera size={18} /> Productivity Victory Photo Gallery
+                </h3>
+                <p>Memorable moments of the award ceremony, trophy presentation, and green campus initiatives</p>
+              </div>
+
+              {isAdmin && isEditMode && (
+                <button
+                  type="button"
+                  className="btn-quick-add-photo"
+                  onClick={() => setIsProductivityModalOpen(true)}
+                >
+                  <PlusCircle size={14} />
+                  <span>Upload More Photos</span>
+                </button>
+              )}
+            </div>
+
+            <div className="productivity-photos-grid">
+              {prodPhotos.map((photo, idx) => (
+                <div
+                  key={photo.id || idx}
+                  className="prod-photo-card"
+                  onClick={() => setSelectedLightboxPhoto(photo)}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => e.key === 'Enter' && setSelectedLightboxPhoto(photo)}
+                >
+                  <div className="prod-photo-img-wrap">
+                    <img src={photo.url} alt={photo.title || 'Productivity Celebration'} loading="lazy" />
+                    <span className="photo-zoom-hint">
+                      <Maximize2 size={14} /> View
+                    </span>
+                  </div>
+                  <div className="prod-photo-caption-bar">
+                    <h4>{photo.title || 'Victory Moment'}</h4>
+                    {photo.caption && <p>{photo.caption}</p>}
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -509,6 +687,46 @@ export default function Home({
           )}
         </div>
       </section>
+
+      {/* Lightbox Modal for Productivity Photos */}
+      {selectedLightboxPhoto && (
+        <div
+          className="modal-backdrop prod-lightbox-backdrop"
+          onClick={() => setSelectedLightboxPhoto(null)}
+        >
+          <div
+            className="prod-lightbox-box"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              type="button"
+              className="btn-lightbox-close"
+              onClick={() => setSelectedLightboxPhoto(null)}
+              aria-label="Close photo preview"
+            >
+              <X size={20} />
+            </button>
+            <div className="prod-lightbox-img-wrap">
+              <img
+                src={selectedLightboxPhoto.url}
+                alt={selectedLightboxPhoto.title || 'Productivity Celebration Photo'}
+              />
+            </div>
+            <div className="prod-lightbox-info">
+              <h3>{selectedLightboxPhoto.title || 'Productivity Award Celebration'}</h3>
+              {selectedLightboxPhoto.caption && <p>{selectedLightboxPhoto.caption}</p>}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Edit Productivity Win & Photos Modal (Admin / Developer) */}
+      <EditProductivityModal
+        isOpen={isProductivityModalOpen}
+        onClose={() => setIsProductivityModalOpen(false)}
+        settings={settings}
+        onSaveSettings={onSaveSettings}
+      />
     </div>
   );
 }

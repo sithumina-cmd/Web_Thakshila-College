@@ -246,7 +246,32 @@
     "historyAcademicText": "For several years, the school has earned a reputation among the leading schools in the Gampaha Zone through the results of the G.C.E. (Ordinary Level) and G.C.E. (Advanced Level) examinations.\n\nOur aim is to produce disciplined, law-abiding citizens who can fearlessly face future challenges through co-curricular and extracurricular activities.",
     "historyAchievementTitle": "A Proud Achievement (අභිමානවත් ජයග්‍රහණය)",
     "historyAchievementText": "Second Place in the Advanced Level Schools category at the National Productivity Awards Competition 2025/26, organized by the National Productivity Secretariat, for building a productivity culture within the school.",
-    "historyEnvironmentText": "Though situated on a limited land close to the main city, the school provides excellent facilities including laboratories, computer units, smart classrooms, media unit, sports, aesthetics, home science and subject units.\n\nWith proper waste management and a beautifully maintained premises, Thakshila has become a pleasant place for all, supported by its teachers, parents, old students and well-wishers.\n\nGampaha Thakshila Vidyalaya, with a heritage of 35 years, shines as a proud school."
+    "historyEnvironmentText": "Though situated on a limited land close to the main city, the school provides excellent facilities including laboratories, computer units, smart classrooms, media unit, sports, aesthetics, home science and subject units.\n\nWith proper waste management and a beautifully maintained premises, Thakshila has become a pleasant place for all, supported by its teachers, parents, old students and well-wishers.\n\nGampaha Thakshila Vidyalaya, with a heritage of 35 years, shines as a proud school.",
+    "productivityTitle": "National Productivity Awards — 2nd Place in Sri Lanka",
+    "productivitySubtitle": "Advanced Level Schools Category | National Productivity Secretariat",
+    "productivitySinhalaTitle": "ජාතික ඵලදායිතා සම්මාන — සමස්ත ලංකා දෙවන ස්ථානය",
+    "productivityVideoUrl": "https://youtu.be/r1cWbnvVHao?si=qMkAmTCHn8aDzW_H",
+    "productivityDesc": "Gampaha Thakshila College proudly achieved All-Island 2nd Place in the Advanced Level Schools category at the prestigious National Productivity Awards Competition organized by the National Productivity Secretariat. This distinguished honour celebrates our vibrant 5S productivity culture, sustainable eco-friendly campus environment, cutting-edge facilities, and disciplined student community.",
+    "productivityPhotos": [
+      {
+        "id": "prod-photo-1",
+        "url": "/Pictures/Front of School.jpeg",
+        "title": "Exemplary 5S Green Campus",
+        "caption": "Main entrance and modern academic premises maintained with pristine cleanliness and order."
+      },
+      {
+        "id": "prod-photo-2",
+        "url": "/Pictures/Productivity Logo.png",
+        "title": "National Productivity Emblem",
+        "caption": "The proud symbol of All-Island distinction, productivity excellence, and continuous improvement."
+      },
+      {
+        "id": "prod-photo-3",
+        "url": "/Pictures/School Flag.jpeg",
+        "title": "Honor, Pride & Valour",
+        "caption": "Thakshila College colors fluttering high in national collegiate distinction."
+      }
+    ]
   },
   "news": [],
   "diary": [],

@@ -774,6 +774,7 @@ export default function App() {
             }}
             onOpenEditSettingsModal={() => setSettingsModalOpen(true)}
             onOpenLoginModal={() => setLoginModalOpen(true)}
+            onSaveSettings={handleSaveSettings}
             setActiveTab={setActiveTab}
           />
         )}
