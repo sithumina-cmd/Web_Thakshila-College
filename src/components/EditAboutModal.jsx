@@ -15,7 +15,8 @@ import {
   Sparkles,
   Flag,
   Music,
-  BookOpen
+  BookOpen,
+  Award
 } from 'lucide-react';
 import { DEFAULT_SCHOOL_CONFIG } from '../config';
 import { compressImageFile } from '../utils/imageHelpers';
