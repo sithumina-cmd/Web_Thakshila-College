@@ -22,7 +22,7 @@ export const DEFAULT_SCHOOL_CONFIG = {
   heroDesc:
     'Empowering generations of disciplined, innovative, and visionary leaders. Welcome to the official web portal of Thakshila College - Gampaha.',
   heroImage: '/Pictures/Front of School.jpeg',
-  schoolLogo: '/Pictures/School logo.jpeg',
+  schoolLogo: '/Pictures/School Logo.png',
   productivityLogo: '/Pictures/Productivity Logo.png',
 
   // Key Highlights & Statistics Strip (Editable)

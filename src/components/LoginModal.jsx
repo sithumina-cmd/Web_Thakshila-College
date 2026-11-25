@@ -64,7 +64,7 @@ export default function LoginModal({
 
         {/* Modal Brand Header */}
         <div className="login-modal-header">
-          <SchoolCrest size={64} src={settings.schoolLogo || '/Pictures/School logo.jpeg'} />
+          <SchoolCrest size={64} src={settings.schoolLogo || '/Pictures/School Logo.png'} />
           <h3>Thakshila College - Gampaha</h3>
           <p className="login-modal-subtitle">
             Student E-Library & Academic Resources Portal

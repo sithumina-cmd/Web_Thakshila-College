@@ -190,7 +190,7 @@ export default function ELibrary({ settings, currentUser, isAdmin, isEditMode, s
       <section className="subpage-banner elibrary-banner">
         <div className="container subpage-banner-inner">
           <div className="subpage-title-with-logo">
-            <SchoolCrest size={72} src={settings?.schoolLogo || '/Pictures/School logo.jpeg'} />
+            <SchoolCrest size={72} src={settings?.schoolLogo || '/Pictures/School Logo.png'} />
             <div>
               <span className="subpage-eyebrow">STUDENT ACADEMIC REPOSITORY</span>
               <h1>Thakshila E-Library</h1>

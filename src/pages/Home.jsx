@@ -77,10 +77,10 @@ export default function Home({
                 className="hero-corner-crest"
               />
             </div>
-            <div className="hero-image-corner-logo hero-productivity-corner-logo" title="National Productivity Award Winner">
+            <div className="hero-image-corner-logo hero-productivity-corner-logo" title="Beyond the Best — Thakshila College Gampaha">
               <img
                 src={settings.productivityLogo || '/Pictures/Productivity Logo.png'}
-                alt="National Productivity Award Winner Logo"
+                alt="Beyond the Best — Thakshila College Gampaha Logo"
                 className="hero-corner-crest hero-corner-productivity"
                 style={{
                   width: '180px',
@@ -236,9 +236,9 @@ export default function Home({
             <div className="vm-logos-divider" aria-hidden="true" />
             <img
               src="/Pictures/Productivity Logo.png"
-              alt="National Productivity Award Winner Logo"
+              alt="Beyond the Best — Thakshila College Gampaha"
               className="vm-header-logo productivity-crest"
-              title="National Productivity Award Winner"
+              title="Beyond the Best — Thakshila College Gampaha"
             />
           </div>
           <h2 className="section-title">Our Vision & Mission</h2>

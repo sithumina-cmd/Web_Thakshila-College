@@ -55,7 +55,7 @@ export default function News({
       <section className="subpage-banner news-banner">
         <div className="container subpage-banner-flex">
           <div className="subpage-title-with-logo">
-            <SchoolCrest size={70} src={settings.schoolLogo || '/Pictures/School logo.jpeg'} />
+            <SchoolCrest size={70} src={settings.schoolLogo || '/Pictures/School Logo.png'} />
             <div>
               <span className="subpage-eyebrow">
                 <Sparkles size={14} /> OFFICIAL SCHOOL NEWSFEED

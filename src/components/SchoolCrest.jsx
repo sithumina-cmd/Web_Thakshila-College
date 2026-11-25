@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 export default function SchoolCrest({
   size = 52,
   className = '',
-  src = '/Pictures/School logo.jpeg',
+  src = '/Pictures/School Logo.png',
   hasBorder = false
 }) {
   const [imageError, setImageError] = useState(false);

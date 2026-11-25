@@ -38,7 +38,7 @@ export default function Footer({
         {/* Col 1: School Identity with Logo before Title */}
         <div className="footer-brand-col">
           <div className="footer-brand-row">
-            <SchoolCrest size={60} src={settings?.schoolLogo || '/Pictures/School logo.jpeg'} />
+            <SchoolCrest size={60} src={settings?.schoolLogo || '/Pictures/School Logo.png'} />
             <div>
               <h3>{settings?.schoolName || 'Thakshila College - Gampaha'}</h3>
               <p className="footer-tagline">{settings?.tagline || 'Premier National School • Gampaha'}</p>

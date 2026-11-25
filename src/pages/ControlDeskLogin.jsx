@@ -60,7 +60,7 @@ export default function ControlDeskLogin({
         </button>
 
         <div className="control-desk-header">
-          <SchoolCrest size={64} src={settings?.schoolLogo || '/Pictures/School logo.jpeg'} />
+          <SchoolCrest size={64} src={settings?.schoolLogo || '/Pictures/School Logo.png'} />
           <span className="control-desk-badge">RESTRICTED SYSTEM ACCESS</span>
           <h2>Thakshila Control Desk</h2>
           <p>Authorized Staff & Master Developer Authentication</p>

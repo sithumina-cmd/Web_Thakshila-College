@@ -111,7 +111,7 @@ export default function Contact({
       <section className="subpage-banner contact-banner">
         <div className="container subpage-banner-inner">
           <div className="subpage-title-with-logo">
-            <SchoolCrest size={72} src={settings.schoolLogo || '/Pictures/School logo.jpeg'} />
+            <SchoolCrest size={72} src={settings.schoolLogo || '/Pictures/School Logo.png'} />
             <div>
               <span className="subpage-eyebrow">
                 OFFICIAL INQUIRIES & COMMUNICATION

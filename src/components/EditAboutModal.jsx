@@ -821,8 +821,9 @@ export default function EditAboutModal({
                   value={formData.schoolLogo}
                   onChange={(val) => updateField('schoolLogo', val)}
                   presets={[
-                    { label: 'Crest JPEG', path: '/Pictures/School logo.jpeg' },
-                    { label: 'Crest PNG', path: '/Pictures/School Logo.png' }
+                    { label: 'Official Crest (High-Res)', path: '/Pictures/School Logo.png' },
+                    { label: 'Master Crest (8K Transparent)', path: '/Pictures/Thakshila Logo Transparent BG.png' },
+                    { label: 'Master Crest (8K Solid)', path: '/Pictures/Thakshila Logo.png' }
                   ]}
                 />
                 <div className="meta-field" style={{ marginTop: '10px' }}>
@@ -943,7 +944,8 @@ export default function EditAboutModal({
                   value={formData.achievementsImage}
                   onChange={(val) => updateField('achievementsImage', val)}
                   presets={[
-                    { label: 'Productivity Award', path: '/Pictures/Productivity Logo.png' },
+                    { label: 'Beyond The Best (High-Res)', path: '/Pictures/Productivity Logo.png' },
+                    { label: 'Beyond The Best (Master)', path: '/Pictures/beyond the best transparent background.png' },
                     { label: 'School Campus', path: '/Pictures/Front of School.jpeg' }
                   ]}
                 />

@@ -75,7 +75,7 @@ export default function Navbar({
           >
             <SchoolCrest
               size={44}
-              src={settings.schoolLogo || '/Pictures/School logo.jpeg'}
+              src={settings.schoolLogo || '/Pictures/School Logo.png'}
               className="brand-crest"
               hasBorder={false}
             />

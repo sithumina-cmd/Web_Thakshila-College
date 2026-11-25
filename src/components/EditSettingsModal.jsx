@@ -83,7 +83,7 @@ export default function EditSettingsModal({
           settings.heroDesc ||
           'Empowering generations of disciplined, innovative, and visionary leaders. Welcome to the official web portal of Thakshila College - Gampaha.',
         heroImage: settings.heroImage || '/Pictures/Front of School.jpeg',
-        schoolLogo: settings.schoolLogo || '/Pictures/School logo.jpeg',
+        schoolLogo: settings.schoolLogo || '/Pictures/School Logo.png',
         stat1Number: settings.stat1Number || '2000+',
         stat1Label: settings.stat1Label || 'Students Enrolled',
         stat2Number: settings.stat2Number || '95',

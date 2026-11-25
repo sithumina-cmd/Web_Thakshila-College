@@ -136,7 +136,7 @@ export default function About({
       <section className="subpage-banner about-banner">
         <div className="container subpage-banner-inner">
           <div className="subpage-title-with-logo">
-            <SchoolCrest size={76} src={s.schoolLogo || '/Pictures/School logo.jpeg'} />
+            <SchoolCrest size={76} src={s.schoolLogo || '/Pictures/School Logo.png'} />
             <div>
               <span className="subpage-eyebrow">EST. {s.foundedYear || '1938'} • OUR HERITAGE & IDENTITY</span>
               <h1>About {s.schoolName || 'Thakshila College - Gampaha'}</h1>
@@ -1017,7 +1017,7 @@ export default function About({
           <div className="identity-dual-grid">
             <div className="identity-detail-card">
               <div className="emblem-display-row">
-                <SchoolCrest size={82} src={s.schoolLogo || '/Pictures/School logo.jpeg'} />
+                <SchoolCrest size={82} src={s.schoolLogo || '/Pictures/School Logo.png'} />
                 <div>
                   <span className="identity-mini-tag">COLLEGE CREST</span>
                   <h3>{s.emblemMeaningTitle}</h3>

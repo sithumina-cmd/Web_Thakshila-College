@@ -113,7 +113,7 @@ export default function SportsCard({
         {/* 2. Official Issuing Bar */}
         <div className="sports-issuing-bar">
           <div className="sports-crest-frame">
-            <SchoolCrest size={44} src={schoolLogo || '/Pictures/School logo.jpeg'} hasBorder={false} />
+            <SchoolCrest size={44} src={schoolLogo || '/Pictures/School Logo.png'} hasBorder={false} />
           </div>
           <div className="sports-issuing-details">
             <div className="sports-issuing-title-row">

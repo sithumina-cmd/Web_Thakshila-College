@@ -75,7 +75,7 @@ export default function ThakshilaDiary({
       <section className="subpage-banner diary-banner">
         <div className="container subpage-banner-flex">
           <div className="subpage-title-with-logo">
-            <SchoolCrest size={70} src={settings?.schoolLogo || '/Pictures/School logo.jpeg'} />
+            <SchoolCrest size={70} src={settings?.schoolLogo || '/Pictures/School Logo.png'} />
             <div>
               <span className="subpage-eyebrow">
                 <BookMarked size={14} /> LIVING CHRONICLE OF THAKSHILA

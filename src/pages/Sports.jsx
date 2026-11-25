@@ -79,7 +79,7 @@ export default function Sports({
       <section className="subpage-banner diary-banner sports-banner">
         <div className="container subpage-banner-flex">
           <div className="subpage-title-with-logo">
-            <SchoolCrest size={70} src={settings?.schoolLogo || '/Pictures/School logo.jpeg'} />
+            <SchoolCrest size={70} src={settings?.schoolLogo || '/Pictures/School Logo.png'} />
             <div>
               <span className="subpage-eyebrow">
                 <Trophy size={14} /> OFFICIAL ATHLETIC &amp; SPORTS CHRONICLE
