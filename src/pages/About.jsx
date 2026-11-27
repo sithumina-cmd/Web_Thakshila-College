@@ -780,28 +780,6 @@ export default function About({
             </div>
           </div>
         </section>
-
-        {/* Contact Strip */}
-        <section className="about-contact-banner">
-          <div>
-            <h3>Contact {s.schoolName || 'Thakshila College - Gampaha'}</h3>
-            <p>Reach out to the college administration office during school hours.</p>
-          </div>
-          <div className="contact-chips">
-            <div className="contact-chip">
-              <MapPin size={17} />
-              <span>{s.address || s.locationDetails || 'Sribhodi Road, Gampaha.'}</span>
-            </div>
-            <div className="contact-chip">
-              <Phone size={17} />
-              <span>{s.contactPhone || '0332224752'}</span>
-            </div>
-            <div className="contact-chip">
-              <Mail size={17} />
-              <span>{s.contactEmail || 'gmthakshilav@gmail.com'}</span>
-            </div>
-          </div>
-        </section>
       </div>
 
       {/* Edit About Page Content & Images Modal */}
