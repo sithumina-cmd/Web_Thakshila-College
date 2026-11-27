@@ -206,23 +206,6 @@ export default function Home({
                 'Fluttering proudly in maroon and gold, the Thakshila College flag embodies decades of academic excellence, discipline, and noble Buddhist traditions. It stands as a beacon of honor and wisdom for generations of Thakshilians.'}
             </p>
 
-            <div className="home-flag-features-grid">
-              <div className="flag-feature-item">
-                <span className="flag-feature-bullet gold" />
-                <div>
-                  <strong>Gold & Maroon</strong>
-                  <p>Wisdom, courage, and Buddhist heritage</p>
-                </div>
-              </div>
-              <div className="flag-feature-item">
-                <span className="flag-feature-bullet maroon" />
-                <div>
-                  <strong>Sacred Crest</strong>
-                  <p>Light of knowledge radiating to the world</p>
-                </div>
-              </div>
-            </div>
-
             {isAdmin && isEditMode && (
               <button
                 type="button"
