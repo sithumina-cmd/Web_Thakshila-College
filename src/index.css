@@ -78,17 +78,18 @@ button {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  gap: 16px;
-  flex-wrap: wrap;
+  gap: 12px;
+  flex-wrap: nowrap;
 }
 
 /* 1. School Name at the Top */
 .brand-identity {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   cursor: pointer;
-  margin-right: 6px;
+  margin-right: 4px;
+  flex-shrink: 0;
 }
 
 .brand-crest {
@@ -101,32 +102,34 @@ button {
 
 .brand-title {
   font-family: 'Playfair Display', serif;
-  font-size: 1.16rem;
+  font-size: 1.15rem;
   font-weight: 800;
   color: var(--maroon-900);
   line-height: 1.15;
   white-space: nowrap;
 }
 
-/* 2. Desktop Navigation: Left-aligned and consistently styled */
+/* 2. Desktop Navigation: Left-aligned and consistently styled in one single bar */
 .desktop-nav {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 3px;
+  flex-shrink: 0;
 }
 
 .nav-tab-btn {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  padding: 6px 12px;
+  gap: 5px;
+  padding: 6px 10px;
   border-radius: 8px;
   border: 1px solid transparent;
   background: transparent;
   color: var(--slate-700);
-  font-size: 0.86rem;
+  font-size: 0.85rem;
   font-weight: 700;
   transition: all 0.2s ease;
+  white-space: nowrap;
 }
 
 .nav-tab-btn:hover {
@@ -141,11 +144,13 @@ button {
   font-weight: 800;
 }
 
-/* 3. Top Action Buttons: LMS & Login (Consistent maroon styling, left-aligned) */
+/* 3. Top Action Buttons: LMS Portal aligned to the right */
 .navbar-actions {
   display: flex;
   align-items: center;
   gap: 8px;
+  margin-left: auto;
+  flex-shrink: 0;
 }
 
 .btn-header-lms,
@@ -4219,7 +4224,24 @@ button {
   }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1180px) {
+  .brand-title {
+    font-size: 1.05rem;
+  }
+  .desktop-nav {
+    gap: 2px;
+  }
+  .nav-tab-btn {
+    padding: 5px 8px;
+    font-size: 0.82rem;
+    gap: 4px;
+  }
+  .main-navbar-inner {
+    gap: 8px;
+  }
+}
+
+@media (max-width: 960px) {
   .hero-landing-viewport {
     height: auto;
   }

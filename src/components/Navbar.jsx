@@ -103,7 +103,7 @@ export default function Navbar({
             })}
           </nav>
 
-          {/* Top Action Buttons: LMS & Login */}
+          {/* Top Action Buttons: LMS & Mobile Menu Toggle */}
           <div className="navbar-actions">
             <a
               href={settings.lmsUrl || 'https://tcg.bluesmartschool.com/'}
@@ -115,16 +115,6 @@ export default function Navbar({
               <ExternalLink size={15} />
               <span>{settings.lmsLabel || 'LMS'}</span>
             </a>
-
-            <button
-              type="button"
-              onClick={currentUser ? () => setActiveTab('elibrary') : onOpenLoginModal}
-              className={`btn-header-login ${currentUser ? 'portal-active' : ''}`}
-              title={currentUser ? 'Open Student E-Library' : 'Student E-Library & School Portal Login'}
-            >
-              {currentUser ? <BookOpen size={15} /> : <LogIn size={15} />}
-              <span>{currentUser ? 'E-Library' : settings.loginLabel || 'Login'}</span>
-            </button>
 
             <button
               type="button"
