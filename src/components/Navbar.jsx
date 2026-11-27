@@ -45,7 +45,7 @@ export default function Navbar({
     { id: 'news', label: 'News', icon: Newspaper },
     { id: 'sports', label: 'Sports', icon: Trophy },
     { id: 'diary', label: 'Thakshila Diary', icon: BookMarked },
-    ...(currentUser ? [{ id: 'elibrary', label: 'E-Library', icon: BookOpen }] : []),
+    { id: 'elibrary', label: 'E-Library', icon: BookOpen },
     { id: 'about', label: 'About', icon: Info },
     { id: 'contact', label: 'Contact US', icon: PhoneCall }
   ];

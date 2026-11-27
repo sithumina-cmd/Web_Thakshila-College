@@ -462,3 +462,6 @@ export const DEFAULT_PAST_PRINCIPALS = [
     "designation": "Principal"
   }
 ];
+
+export { INITIAL_RESOURCES } from './data/initialResources';
+

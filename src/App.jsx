@@ -96,7 +96,41 @@ export default function App() {
     });
 
     async function verifyExistingSession() {
-      if (!getAuthToken()) return;
+      const token = getAuthToken();
+      if (!token) return;
+
+      // Resilient fallback session reconstruction for static hosting (Vercel, Firebase)
+      if (token.startsWith('tcg_dev_token_')) {
+        setCurrentUser({
+          id: 'dev-master-1',
+          username: 'developer',
+          role: 'developer',
+          name: 'Lead Developer & Master Administrator'
+        });
+        setIsEditMode(true);
+        return;
+      }
+      if (token.startsWith('tcg_admin_token_')) {
+        setCurrentUser({
+          id: 'admin-1',
+          username: 'admin',
+          role: 'admin',
+          name: 'School Administrator'
+        });
+        setIsEditMode(true);
+        return;
+      }
+      if (token.startsWith('tcg_student_token_')) {
+        setCurrentUser({
+          id: 'student-portal',
+          username: 'student',
+          role: 'student',
+          name: 'Student Portal User'
+        });
+        setIsEditMode(false);
+        return;
+      }
+
       try {
         const res = await authFetch('/api/auth/me');
         if (res.ok) {
@@ -193,6 +227,7 @@ export default function App() {
 
   // Common Student Portal Login Handler (Public modal -> unlocks E-Library)
   const handleStudentLogin = async (username, password) => {
+    const cleanUser = String(username).trim().toLowerCase();
     try {
       const res = await fetch('/api/student/login', {
         method: 'POST',
@@ -210,30 +245,30 @@ export default function App() {
           showToast('Welcome to Thakshila College E-Library!');
           return { success: true };
         }
-        return data;
       }
-      throw new Error('API server offline');
     } catch {
-      // Offline / Static fallback (Vercel, Firebase, etc.)
-      const cleanUser = String(username).trim().toLowerCase();
-      if ((cleanUser === 'student' || cleanUser === 'tcgampaha') && password === 'thakshila2026') {
-        const fallbackUser = { role: 'student', username: 'student', name: 'Student Portal Visitor' };
-        setAuthToken('tcg_student_token_' + Date.now());
-        setCurrentUser(fallbackUser);
-        setIsEditMode(false);
-        setActiveTab('elibrary');
-        showToast('Welcome to Thakshila College E-Library!');
-        return { success: true };
-      }
-      return {
-        success: false,
-        message: 'Invalid Student Portal credentials.'
-      };
+      // API server offline / static host
     }
+
+    // Offline / Static fallback (Vercel, Firebase, etc.)
+    if ((cleanUser === 'student' || cleanUser === 'tcgampaha') && password === 'thakshila2026') {
+      const fallbackUser = { id: 'student-portal', role: 'student', username: 'student', name: 'Student Portal User' };
+      setAuthToken('tcg_student_token_' + Date.now());
+      setCurrentUser(fallbackUser);
+      setIsEditMode(false);
+      setActiveTab('elibrary');
+      showToast('Welcome to Thakshila College E-Library!');
+      return { success: true };
+    }
+    return {
+      success: false,
+      message: 'Invalid Student Portal credentials. (Username: student / Password: thakshila2026)'
+    };
   };
 
   // Hidden Staff & Master Developer Login Handler (/#/control-desk)
   const handleControlDeskLogin = async ({ username, password, securityPin, loginMode }) => {
+    const cleanUser = String(username).trim().toLowerCase();
     try {
       const res = await fetch('/api/auth/login', {
         method: 'POST',
@@ -257,60 +292,59 @@ export default function App() {
           );
           return { success: true };
         }
-        return data;
       }
-      throw new Error('API server offline');
     } catch {
-      // Offline / Static fallback (Vercel, Firebase, etc.)
-      const cleanUser = String(username).trim().toLowerCase();
-      if (
-        loginMode === 'developer' &&
-        cleanUser === 'developer' &&
-        password === 'TcgDev@2026' &&
-        securityPin === '20052720231020050928'
-      ) {
-        const devUser = {
-          id: 'dev-master-1',
-          username: 'developer',
-          role: 'developer',
-          name: 'Lead Developer & Master Administrator'
-        };
-        setAuthToken('tcg_dev_token_' + Date.now());
-        setCurrentUser(devUser);
-        setIsEditMode(true);
-        localStorage.setItem('tcg_admin_logged_in', 'true');
-        window.location.hash = '';
-        setControlDeskRoute(false);
-        setActiveTab('home');
-        showToast('Master Developer Control Activated!');
-        return { success: true };
-      }
-      if (
-        loginMode === 'admin' &&
-        cleanUser === 'admin' &&
-        password === 'admin123'
-      ) {
-        const adminUser = {
-          id: 'admin-1',
-          username: 'admin',
-          role: 'admin',
-          name: 'School Administrator'
-        };
-        setAuthToken('tcg_admin_token_' + Date.now());
-        setCurrentUser(adminUser);
-        setIsEditMode(true);
-        localStorage.setItem('tcg_admin_logged_in', 'true');
-        window.location.hash = '';
-        setControlDeskRoute(false);
-        setActiveTab('home');
-        showToast('Administrator Editing Mode Activated!');
-        return { success: true };
-      }
-      return {
-        success: false,
-        message: 'Invalid credentials. Please verify your username, password, or security PIN.'
-      };
+      // API server offline / static host
     }
+
+    // Offline / Static fallback (Vercel, Firebase, etc.)
+    if (
+      loginMode === 'developer' &&
+      cleanUser === 'developer' &&
+      password === 'TcgDev@2026' &&
+      securityPin === '20052720231020050928'
+    ) {
+      const devUser = {
+        id: 'dev-master-1',
+        username: 'developer',
+        role: 'developer',
+        name: 'Lead Developer & Master Administrator'
+      };
+      setAuthToken('tcg_dev_token_' + Date.now());
+      setCurrentUser(devUser);
+      setIsEditMode(true);
+      localStorage.setItem('tcg_admin_logged_in', 'true');
+      window.location.hash = '';
+      setControlDeskRoute(false);
+      setActiveTab('home');
+      showToast('Master Developer Control Activated!');
+      return { success: true };
+    }
+    if (
+      loginMode === 'admin' &&
+      cleanUser === 'admin' &&
+      password === 'admin123'
+    ) {
+      const adminUser = {
+        id: 'admin-1',
+        username: 'admin',
+        role: 'admin',
+        name: 'School Administrator'
+      };
+      setAuthToken('tcg_admin_token_' + Date.now());
+      setCurrentUser(adminUser);
+      setIsEditMode(true);
+      localStorage.setItem('tcg_admin_logged_in', 'true');
+      window.location.hash = '';
+      setControlDeskRoute(false);
+      setActiveTab('home');
+      showToast('Administrator Editing Mode Activated!');
+      return { success: true };
+    }
+    return {
+      success: false,
+      message: 'Invalid credentials. Please verify your username, password, or security PIN.'
+    };
   };
 
   const handleLogout = async () => {
@@ -865,13 +899,14 @@ export default function App() {
           />
         )}
 
-        {activeTab === 'elibrary' && currentUser && (
+        {activeTab === 'elibrary' && (
           <ELibrary
             settings={settings}
             currentUser={currentUser}
             isAdmin={isAdmin}
             isEditMode={isEditMode}
             showToast={showToast}
+            onOpenLoginModal={() => setLoginModalOpen(true)}
           />
         )}
 

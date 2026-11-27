@@ -109,7 +109,11 @@ export default function LoginModal({
               <div className="student-portal-banner">
                 <GraduationCap size={18} />
                 <span>
-                  Sign in with your <strong>Student Portal</strong> credentials to access Past Papers and Study Notes in the <strong>E-Library</strong>.
+                  Sign in with your <strong>Student Portal</strong> credentials to access and download Past Papers and Study Notes in the <strong>E-Library</strong>.
+                  <br />
+                  <small style={{ opacity: 0.85, display: 'inline-block', marginTop: '4px' }}>
+                    Standard student access: Username <strong>student</strong> • Password <strong>thakshila2026</strong>
+                  </small>
                 </span>
               </div>
 

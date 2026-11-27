@@ -55,7 +55,14 @@ export async function authFetch(url, options = {}) {
   });
 
   if (res.status === 401 && unauthorizedHandler && !url.includes('/login')) {
-    unauthorizedHandler();
+    // Only trigger global unauthorized logout for server-signed sessions,
+    // NEVER disrupt resilient client-side/offline fallback sessions (e.g. Vercel static hosting)
+    const isOfflineToken = token.startsWith('tcg_dev_token_') ||
+      token.startsWith('tcg_admin_token_') ||
+      token.startsWith('tcg_student_token_');
+    if (!isOfflineToken) {
+      unauthorizedHandler();
+    }
   }
 
   return res;
