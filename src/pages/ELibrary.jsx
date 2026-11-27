@@ -309,23 +309,7 @@ export default function ELibrary({
                 </p>
               ) : (
                 <p className="subpage-si-title">
-                  Official Past Papers, Term Test Papers, Model Papers & Study Guides •{' '}
-                  <button
-                    type="button"
-                    onClick={onOpenLoginModal}
-                    style={{
-                      background: 'none',
-                      border: 'none',
-                      color: '#fbbf24',
-                      textDecoration: 'underline',
-                      cursor: 'pointer',
-                      fontWeight: 'bold',
-                      padding: 0
-                    }}
-                  >
-                    Sign in with Student Credentials
-                  </button>{' '}
-                  to download
+                  Official Past Papers, Term Test Papers, Model Papers & Study Guides
                 </p>
               )}
             </div>
