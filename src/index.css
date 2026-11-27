@@ -4915,6 +4915,150 @@ button {
   }
 }
 
+/* Past Principals - Compact Clean Grid */
+.past-principals-subsection {
+  margin-top: 10px;
+  background: #ffffff;
+  border: 1px solid var(--slate-200);
+  border-radius: 16px;
+  padding: 30px 36px;
+  box-shadow: 0 4px 18px rgba(15, 23, 42, 0.04);
+}
+
+.past-principals-header {
+  margin-bottom: 20px;
+}
+
+.past-principals-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--maroon-950);
+  margin: 0 0 4px 0;
+}
+
+.past-principals-title .heading-bullet {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--maroon-800);
+  flex-shrink: 0;
+}
+
+.past-principals-subtitle {
+  font-size: 0.86rem;
+  color: var(--slate-500);
+  display: block;
+}
+
+.past-principals-compact-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+.past-principal-compact-card {
+  background: var(--slate-50);
+  border: 1px solid var(--slate-200);
+  border-radius: 12px;
+  padding: 14px 16px;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.03);
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.past-principal-compact-card:hover {
+  border-color: var(--maroon-800);
+  background: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(74, 5, 24, 0.08);
+}
+
+.past-principal-compact-card.current-principal-compact-card {
+  background: linear-gradient(135deg, #fffdf8, #fef2f2);
+  border-color: #fde68a;
+  border-left: 3px solid var(--maroon-800);
+}
+
+.past-principal-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.past-principal-order {
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: var(--maroon-900);
+  background: rgba(74, 5, 24, 0.08);
+  padding: 2px 7px;
+  border-radius: 6px;
+}
+
+.past-principal-period {
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: #b45309;
+}
+
+.past-principal-name {
+  font-size: 0.94rem;
+  font-weight: 800;
+  color: var(--slate-900);
+  margin: 0 0 6px 0;
+  line-height: 1.35;
+}
+
+.past-principal-meta {
+  font-size: 0.76rem;
+  color: var(--slate-500);
+  line-height: 1.4;
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.past-principal-role {
+  font-weight: 600;
+  color: var(--slate-700);
+}
+
+.past-principal-role.current-role {
+  color: var(--maroon-900);
+  font-weight: 700;
+}
+
+.past-principal-tenure {
+  font-size: 0.74rem;
+}
+
+.past-principal-duration {
+  font-size: 0.72rem;
+  color: var(--slate-400);
+}
+
+@media (max-width: 900px) {
+  .past-principals-compact-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .past-principals-compact-grid {
+    grid-template-columns: 1fr;
+  }
+  .past-principals-subsection {
+    padding: 20px 16px;
+  }
+}
+
 .history-hero-lead-card {
   display: flex;
   align-items: center;

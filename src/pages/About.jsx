@@ -583,102 +583,55 @@ export default function About({
           </div>
 
           {/* ============================================================
-              4. LEADERSHIP LINEAGE: ROLL OF PAST PRINCIPALS (1992 – 2024)
-              Replaces legacy milestone cards with official archival lineage
+              4. PAST PRINCIPALS (ආදි විදුහල්පතිවරුන්) - Clean, Compact Grid
              ============================================================ */}
-          <div className="about-subsection-box principals-lineage-subsection">
-            <div className="principals-section-header-cluster">
-              <div className="principals-title-group">
-                <div className="principals-badge-icon">
-                  <Award size={24} />
-                </div>
-                <div>
-                  <div className="principals-eyebrow-tag">OFFICIAL ARCHIVAL RECORDS • 1992 – 2024</div>
-                  <h3 className="subsection-heading-prominent">
-                    Distinguished Roll of Past Principals
-                  </h3>
-                  <p className="principals-sinhala-subtitle">
-                    විදුහල්පති නාමාවලිය — තක්ෂිලා විදුහල් මාතාව මෙහෙයවූ අභිමානවත් විදුහල්පති පරපුර
-                  </p>
-                </div>
-              </div>
+          <div className="about-subsection-box past-principals-subsection">
+            <div className="past-principals-header">
+              <h3 className="past-principals-title">
+                <span className="heading-bullet" /> Past Principals
+              </h3>
+              <span className="past-principals-subtitle">
+                ආදි විදුහල්පති පරපුර (1992 – වර්තමානය)
+              </span>
             </div>
 
-            {/* Quick Summary Strip */}
-            <div className="principals-metric-strip">
-              <div className="metric-chip">
-                <span className="metric-num">8</span>
-                <span className="metric-txt">Documented Tenures</span>
-              </div>
-              <div className="metric-chip divider-chip" />
-              <div className="metric-chip">
-                <span className="metric-num">32+</span>
-                <span className="metric-txt">Years of Leadership (1992 – 2024)</span>
-              </div>
-              <div className="metric-chip divider-chip" />
-              <div className="metric-chip">
-                <span className="metric-num">100%</span>
-                <span className="metric-txt">Verified Archival Lineage</span>
-              </div>
-            </div>
-
-            {/* CHRONOLOGICAL TIMELINE JOURNEY */}
-            <div className="principals-timeline-flow">
-              <div className="timeline-vertical-spine" aria-hidden="true" />
-              <div className="principals-timeline-items">
-                {sortedPrincipals.map((p, idx) => (
-                  <div
-                    key={p.id || idx}
-                    className={`principal-timeline-node ${idx % 2 === 0 ? 'node-left' : 'node-right'}`}
-                  >
-                    <div className="timeline-node-medallion" title={`Official Record #${p.order || idx + 1}`}>
-                      <span className="medallion-hash">#</span>
-                      <span className="medallion-number">{String(p.order || idx + 1).padStart(2, '0')}</span>
-                    </div>
-
-                    <div className="principal-chronicle-card">
-                      <div className="chronicle-card-top">
-                        <div className="chronicle-era-badge">
-                          <Calendar size={13} />
-                          <span>{p.period}</span>
-                        </div>
-                        {p.duration && (
-                          <div className="chronicle-duration-pill">
-                            <Clock size={12} />
-                            <span>{p.duration}</span>
-                          </div>
-                        )}
-                      </div>
-
-                      <h4 className="chronicle-principal-name">{p.name}</h4>
-                      <div className="chronicle-designation-line">
-                        <span className="principal-role-tag">{p.designation || 'Principal'}</span>
-                        <span className="dot-sep">•</span>
-                        <span className="school-affil">Thakshila College</span>
-                      </div>
-
-                      <div className="chronicle-tenure-banner">
-                        <span className="tenure-label">Official Service Tenure:</span>
-                        <strong className="tenure-exact-dates">{p.tenure}</strong>
-                      </div>
-                    </div>
+            {/* Compact Principals Grid */}
+            <div className="past-principals-compact-grid">
+              {sortedPrincipals.map((p, idx) => (
+                <div key={p.id || idx} className="past-principal-compact-card">
+                  <div className="past-principal-card-head">
+                    <span className="past-principal-order">#{String(p.order || idx + 1).padStart(2, '0')}</span>
+                    <span className="past-principal-period">{p.period}</span>
                   </div>
-                ))}
-              </div>
-            </div>
+                  <h4 className="past-principal-name">{p.name}</h4>
+                  <div className="past-principal-meta">
+                    <span className="past-principal-role">{p.designation || 'Principal'}</span>
+                    <span className="past-principal-tenure">{p.tenure}</span>
+                    {p.duration && <span className="past-principal-duration">({p.duration})</span>}
+                  </div>
+                </div>
+              ))}
 
-            {/* Incumbent Transition Footer Note */}
-            <div className="principals-incumbent-footer">
-              <div className="incumbent-footer-icon">
-                <CheckCircle2 size={18} />
-              </div>
-              <div className="incumbent-footer-text">
-                <strong>Continuing the Legacy:</strong> Following this illustrious lineage, Thakshila College is guided today by <strong>{s.principalName || 'Mr. T. M. Premawansa'}</strong> (Incumbent Principal).
-              </div>
-              <a href="#sec-principal" className="btn-jump-principal">
-                <span>View Principal's Message</span>
-                <ChevronRight size={14} />
-              </a>
+              {/* Current / Incumbent Principal - styled same as other parts */}
+              {!sortedPrincipals.some(
+                (p) =>
+                  (p.name || '').toLowerCase().includes('premawansa') ||
+                  (p.name || '').toLowerCase().includes('premavansha')
+              ) && (
+                <div className="past-principal-compact-card current-principal-compact-card">
+                  <div className="past-principal-card-head">
+                    <span className="past-principal-order">
+                      #{String(sortedPrincipals.length + 1).padStart(2, '0')}
+                    </span>
+                    <span className="past-principal-period">2024 – Present</span>
+                  </div>
+                  <h4 className="past-principal-name">{s.principalName || 'Mr. T. M. Premawansa'}</h4>
+                  <div className="past-principal-meta">
+                    <span className="past-principal-role current-role">Incumbent Principal (වත්මන් විදුහල්පති)</span>
+                    <span className="past-principal-tenure">2024.01.08 – Present</span>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </section>
