@@ -308,7 +308,7 @@ export default function App() {
     }
     return {
       success: false,
-      message: 'Invalid Student Portal credentials. (Username: student / Password: thakshila2026)'
+      message: 'Invalid Student Portal credentials. Please check your username and password.'
     };
   };
 
