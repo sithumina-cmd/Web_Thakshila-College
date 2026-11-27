@@ -2360,11 +2360,20 @@ button {
   margin-bottom: 14px;
 }
 
-.vm-card h3 {
+.vm-card h3,
+.vm-card-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
   font-size: 1.35rem;
   font-weight: 700;
   color: var(--maroon-900);
-  margin-bottom: 12px;
+  margin-bottom: 14px;
+}
+
+.vm-bullet-icon {
+  color: var(--maroon-900);
+  flex-shrink: 0;
 }
 
 .vm-card p {

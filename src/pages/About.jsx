@@ -29,7 +29,8 @@ import {
   Leaf,
   Microscope,
   Cpu,
-  Globe
+  Globe,
+  Circle
 } from 'lucide-react';
 import SchoolCrest from '../components/SchoolCrest';
 import EditAboutModal from '../components/EditAboutModal';
@@ -369,18 +370,18 @@ export default function About({
 
           <div className="vision-mission-grid">
             <div className="vm-card vision">
-              <div className="vm-icon-box">
-                <Target size={28} />
-              </div>
-              <h3>දැක්ම</h3>
+              <h3 className="vm-card-title">
+                <Circle size={10} fill="currentColor" strokeWidth={0} className="vm-bullet-icon" />
+                <span>දැක්ම</span>
+              </h3>
               <p>{s.vision}</p>
             </div>
 
             <div className="vm-card mission">
-              <div className="vm-icon-box">
-                <Compass size={28} />
-              </div>
-              <h3>මෙහෙවර</h3>
+              <h3 className="vm-card-title">
+                <Circle size={10} fill="currentColor" strokeWidth={0} className="vm-bullet-icon" />
+                <span>මෙහෙවර</span>
+              </h3>
               <p>{s.mission}</p>
             </div>
           </div>

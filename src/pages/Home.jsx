@@ -22,7 +22,8 @@ import {
   CheckCircle2,
   Camera,
   X,
-  Maximize2
+  Maximize2,
+  Circle
 } from 'lucide-react';
 import SchoolCrest from '../components/SchoolCrest';
 import PostCard from '../components/PostCard';
@@ -267,10 +268,10 @@ export default function Home({
 
         <div className="vision-mission-grid">
           <div className="vm-card vision">
-            <div className="vm-icon-box">
-              <Target size={28} />
-            </div>
-            <h3>දැක්ම</h3>
+            <h3 className="vm-card-title">
+              <Circle size={10} fill="currentColor" strokeWidth={0} className="vm-bullet-icon" />
+              <span>දැක්ම</span>
+            </h3>
             <p>
               {settings.vision ||
                 'ද්වීතියික අධ්‍යාපනයේ අරමුණු හා පරමාර්ථ අංගසම්පූර්ණ ලෙස ඉටුකර ගන්නා විශිෂ්ට පාසලක්'}
@@ -278,10 +279,10 @@ export default function Home({
           </div>
 
           <div className="vm-card mission">
-            <div className="vm-icon-box">
-              <Compass size={28} />
-            </div>
-            <h3>මෙහෙවර</h3>
+            <h3 className="vm-card-title">
+              <Circle size={10} fill="currentColor" strokeWidth={0} className="vm-bullet-icon" />
+              <span>මෙහෙවර</span>
+            </h3>
             <p>
               {settings.mission ||
                 'ගුණාත්මක ඉගෙනුම් ඉගැන්වීම් ක්‍රියාවලියක් තුළ විෂය සමගාමී හා බාහිර ක්‍රියාකාරකම් සපුරාලමින් පරිසරය සුරකින අනාගත අභියෝග ජයගත හැකි, මනා පෞරුෂයකින් හෙබි, විනයගරුක, නීතිගරුක, අභිමානවත් සිසු පරපුරක් දේශයට දායාද කිරීම.'}
