@@ -14,7 +14,9 @@ import {
   Tag,
   CheckCircle2,
   FolderOpen,
-  LogIn
+  LogIn,
+  Lock,
+  LogOut
 } from 'lucide-react';
 import SchoolCrest from '../components/SchoolCrest';
 import { authFetch } from '../utils/api';
@@ -36,7 +38,8 @@ export default function ELibrary({
   isAdmin,
   isEditMode,
   showToast,
-  onOpenLoginModal
+  onOpenLoginModal,
+  onLogout
 }) {
   // Initialize immediately from localStorage or rich default resources
   const [resources, setResources] = useState(() => {
@@ -327,7 +330,7 @@ export default function ELibrary({
               </button>
             )}
 
-            {!currentUser && onOpenLoginModal && (
+            {!currentUser && onOpenLoginModal ? (
               <button
                 type="button"
                 onClick={onOpenLoginModal}
@@ -337,129 +340,194 @@ export default function ELibrary({
                 <LogIn size={16} />
                 <span>Student Sign In</span>
               </button>
-            )}
+            ) : currentUser && onLogout ? (
+              <button
+                type="button"
+                onClick={onLogout}
+                className="btn-banner-post"
+                style={{ background: 'linear-gradient(135deg, #b91c1c 0%, #991b1b 100%)' }}
+                title="Sign out of E-Library"
+              >
+                <LogOut size={16} />
+                <span>Log Out</span>
+              </button>
+            ) : null}
           </div>
         </div>
       </section>
 
-      <div className="container elibrary-wrapper">
-        {/* Filter & Search Bar */}
-        <div className="elibrary-filter-panel">
-          <div className="elibrary-search-box">
-            <Search size={18} />
-            <input
-              type="text"
-              placeholder="Search past papers by subject, grade, year, or keyword..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-            />
-          </div>
-
-          <div className="elibrary-controls-row">
-            <div className="elibrary-cat-pills">
-              {CATEGORIES.map((cat) => (
-                <button
-                  key={cat}
-                  type="button"
-                  className={`elib-cat-pill ${selectedCategory === cat ? 'active' : ''}`}
-                  onClick={() => setSelectedCategory(cat)}
-                >
-                  {cat}
-                </button>
-              ))}
+      {currentUser ? (
+        <div className="container elibrary-wrapper">
+          {/* Filter & Search Bar */}
+          <div className="elibrary-filter-panel">
+            <div className="elibrary-search-box">
+              <Search size={18} />
+              <input
+                type="text"
+                placeholder="Search past papers by subject, grade, year, or keyword..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
             </div>
 
-            <div className="elibrary-grade-select">
-              <GraduationCap size={16} />
-              <select
-                value={selectedGrade}
-                onChange={(e) => setSelectedGrade(e.target.value)}
-                aria-label="Filter by Grade"
-              >
-                {GRADES.map((g) => (
-                  <option key={g} value={g}>
-                    {g}
-                  </option>
+            <div className="elibrary-controls-row">
+              <div className="elibrary-cat-pills">
+                {CATEGORIES.map((cat) => (
+                  <button
+                    key={cat}
+                    type="button"
+                    className={`elib-cat-pill ${selectedCategory === cat ? 'active' : ''}`}
+                    onClick={() => setSelectedCategory(cat)}
+                  >
+                    {cat}
+                  </button>
                 ))}
-              </select>
+              </div>
+
+              <div className="elibrary-grade-select">
+                <GraduationCap size={16} />
+                <select
+                  value={selectedGrade}
+                  onChange={(e) => setSelectedGrade(e.target.value)}
+                  aria-label="Filter by Grade"
+                >
+                  {GRADES.map((g) => (
+                    <option key={g} value={g}>
+                      {g}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
+          </div>
+
+          {/* Resource Grid */}
+          {loading ? (
+            <div className="elibrary-empty-state">
+              <BookOpen size={36} />
+              <p>Loading official past papers & study resources...</p>
+            </div>
+          ) : filteredResources.length === 0 ? (
+            <div className="elibrary-empty-state">
+              <FolderOpen size={42} />
+              <h3>No Study Resources Found</h3>
+              <p>Try adjusting your search keywords, category, or grade filter.</p>
+            </div>
+          ) : (
+            <div className="elibrary-grid">
+              {filteredResources.map((item) => (
+                <article key={item.id} className="elibrary-card">
+                  <div className="elibrary-card-top">
+                    <span className="elib-category-badge">
+                      <Tag size={12} /> {item.category}
+                    </span>
+                    <span className="elib-year-badge">
+                      <Calendar size={12} /> {item.year}
+                    </span>
+                  </div>
+
+                  <div className="elibrary-card-body">
+                    <div className="elib-icon-title">
+                      <div className="elib-pdf-icon">
+                        <FileText size={22} />
+                      </div>
+                      <div>
+                        <span className="elib-meta-sub">
+                          {item.grade} • <strong>{item.subject}</strong>
+                        </span>
+                        <h3>{item.title}</h3>
+                      </div>
+                    </div>
+                    <p className="elib-desc">{item.description || 'Official college academic resource.'}</p>
+                  </div>
+
+                  <div className="elibrary-card-footer">
+                    <div className="elib-file-meta">
+                      <span>{item.fileSize || 'PDF Document'}</span>
+                      <span>•</span>
+                      <span>{item.downloads || 0} Downloads</span>
+                    </div>
+
+                    <div className="elib-card-actions">
+                      {isAdmin && isEditMode && (
+                        <button
+                          type="button"
+                          className="btn-elib-delete"
+                          onClick={() => handleDeleteResource(item.id)}
+                          title="Delete Resource from E-Library"
+                        >
+                          <Trash2 size={15} />
+                        </button>
+                      )}
+                      <button
+                        type="button"
+                        className="btn-elib-download"
+                        onClick={() => handleDownload(item)}
+                        title={currentUser ? 'Download PDF Paper' : 'Sign In to Download'}
+                      >
+                        <Download size={15} />
+                        <span>Download</span>
+                      </button>
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
+          )}
+        </div>
+      ) : (
+        /* If unauthenticated: Display locked gateway with Login button (do not show username & password fields directly) */
+        <div className="container elibrary-auth-gate-wrapper">
+          <div className="elibrary-auth-gate-card">
+            <div className="elib-lock-badge">
+              <Lock size={32} />
+            </div>
+            <h2>Student Sign In Required</h2>
+            <p className="elib-lock-subtitle">
+              The Thakshila College E-Library repository is restricted to authenticated students, teachers, and staff.
+              Please sign in with your credentials to access and download official past papers, term test papers, and model papers.
+            </p>
+
+            <div className="elib-lock-features-list">
+              <div className="elib-lock-feature">
+                <BookOpen size={18} className="feature-icon" />
+                <div>
+                  <strong>Grade 6 to 13 Repository</strong>
+                  <span>Past papers, term test papers &amp; marking schemes</span>
+                </div>
+              </div>
+              <div className="elib-lock-feature">
+                <Download size={18} className="feature-icon" />
+                <div>
+                  <strong>Instant PDF Downloads</strong>
+                  <span>High-speed offline access to study resources</span>
+                </div>
+              </div>
+              <div className="elib-lock-feature">
+                <CheckCircle2 size={18} className="feature-icon" />
+                <div>
+                  <strong>Free for All Students</strong>
+                  <span>Provided by Thakshila College Gampaha</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="elib-lock-action-box">
+              <button
+                type="button"
+                onClick={onOpenLoginModal}
+                className="btn-elib-main-login"
+              >
+                <LogIn size={18} />
+                <span>Login to Access E-Library</span>
+              </button>
+              <p className="elib-lock-help-text">
+                Clicking the button will open the login window. Do not share your student credentials with anyone.
+              </p>
             </div>
           </div>
         </div>
-
-        {/* Resource Grid */}
-        {loading ? (
-          <div className="elibrary-empty-state">
-            <BookOpen size={36} />
-            <p>Loading official past papers & study resources...</p>
-          </div>
-        ) : filteredResources.length === 0 ? (
-          <div className="elibrary-empty-state">
-            <FolderOpen size={42} />
-            <h3>No Study Resources Found</h3>
-            <p>Try adjusting your search keywords, category, or grade filter.</p>
-          </div>
-        ) : (
-          <div className="elibrary-grid">
-            {filteredResources.map((item) => (
-              <article key={item.id} className="elibrary-card">
-                <div className="elibrary-card-top">
-                  <span className="elib-category-badge">
-                    <Tag size={12} /> {item.category}
-                  </span>
-                  <span className="elib-year-badge">
-                    <Calendar size={12} /> {item.year}
-                  </span>
-                </div>
-
-                <div className="elibrary-card-body">
-                  <div className="elib-icon-title">
-                    <div className="elib-pdf-icon">
-                      <FileText size={22} />
-                    </div>
-                    <div>
-                      <span className="elib-meta-sub">
-                        {item.grade} • <strong>{item.subject}</strong>
-                      </span>
-                      <h3>{item.title}</h3>
-                    </div>
-                  </div>
-                  <p className="elib-desc">{item.description || 'Official college academic resource.'}</p>
-                </div>
-
-                <div className="elibrary-card-footer">
-                  <div className="elib-file-meta">
-                    <span>{item.fileSize || 'PDF Document'}</span>
-                    <span>•</span>
-                    <span>{item.downloads || 0} Downloads</span>
-                  </div>
-
-                  <div className="elib-card-actions">
-                    {isAdmin && isEditMode && (
-                      <button
-                        type="button"
-                        className="btn-elib-delete"
-                        onClick={() => handleDeleteResource(item.id)}
-                        title="Delete Resource from E-Library"
-                      >
-                        <Trash2 size={15} />
-                      </button>
-                    )}
-                    <button
-                      type="button"
-                      className="btn-elib-download"
-                      onClick={() => handleDownload(item)}
-                      title={currentUser ? 'Download PDF Paper' : 'Sign In to Download'}
-                    >
-                      <Download size={15} />
-                      <span>{currentUser ? 'Download' : 'Download'}</span>
-                    </button>
-                  </div>
-                </div>
-              </article>
-            ))}
-          </div>
-        )}
-      </div>
+      )}
 
       {/* Admin Upload Resource Modal */}
       {uploadModalOpen && (

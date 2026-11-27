@@ -114,7 +114,7 @@ export default function App() {
     registerUnauthorizedHandler(() => {
       setCurrentUser(null);
       setIsEditMode(false);
-      setActiveTab((prev) => (prev === 'settings' || prev === 'elibrary' ? 'home' : prev));
+      setActiveTab((prev) => (prev === 'settings' ? 'home' : prev));
       showToast('Session expired or terminated. Please sign in again.');
     });
 
@@ -403,7 +403,7 @@ export default function App() {
     localStorage.removeItem('tcg_admin_logged_in');
     setCurrentUser(null);
     setIsEditMode(false);
-    setActiveTab((prev) => (prev === 'settings' || prev === 'elibrary' ? 'home' : prev));
+    setActiveTab((prev) => (prev === 'settings' ? 'home' : prev));
     showToast('Signed out safely.');
   };
 
@@ -917,6 +917,7 @@ export default function App() {
             isEditMode={isEditMode}
             showToast={showToast}
             onOpenLoginModal={() => setLoginModalOpen(true)}
+            onLogout={handleLogout}
           />
         )}
 
