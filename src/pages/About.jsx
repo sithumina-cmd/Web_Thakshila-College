@@ -452,419 +452,132 @@ export default function About({
             {renderEditSectionBtn('history', 'Edit History & Present')}
           </div>
 
-          {/* Section Hero Lead Banner */}
-          <div className="history-hero-lead-card">
-            <div className="history-lead-icon-bubble">
-              <Landmark size={28} />
-            </div>
-            <div className="history-lead-text-box">
-              <span className="history-lead-badge">
-                <Sparkles size={14} /> 35 YEARS OF EDUCATIONAL GLORY • 1992 – 2026/2027
-              </span>
-              <p className="history-lead-paragraph">
-                {s.historyIntro ||
-                  'Gampaha Thakshila Vidyalaya, a proud mixed school situated in the heart of Gampaha, has been enlightening the children of the nation and nurturing citizens with personality for over three decades.'}
+          {/* Simplified History & Present Article: Clean Text Paragraphs with Headers & Founding Principal Photo */}
+          <div className="history-simple-article-card">
+            {/* Lead Overview Paragraph */}
+            {s.historyIntro && (
+              <p className="history-simple-lead">
+                {s.historyIntro}
               </p>
-            </div>
-          </div>
+            )}
 
-          {/* ============================================================
-              SUBSECTION A: OUR BEGINNING (අපගේ ආරම්භය)
-             ============================================================ */}
-          <div className="history-subsection-card beginning-subsection-card">
-            <div className="history-subsection-header">
-              <div className="subsection-icon-badge beginning">
-                <Calendar size={22} />
+            {/* Subsection 1: Our Beginning with Mr./Mrs. Yapa Dissanayake's Picture */}
+            <div className="history-simple-block">
+              <h3 className="history-simple-heading">
+                <span className="heading-bullet" /> Our Beginning (අපගේ ආරම්භය)
+              </h3>
+
+              <div className="history-beginning-simple-layout">
+                {/* Founding Principal Photo Box */}
+                <div className="founding-principal-simple-card">
+                  <div className="founding-principal-photo-wrap">
+                    <img
+                      src={s.firstPrincipalImage || '/Pictures/principal-office-vintage.jpg'}
+                      alt={s.firstPrincipalName || 'Founding Principal'}
+                      className="founding-principal-img"
+                    />
+                  </div>
+                  <div className="founding-principal-info">
+                    <h4>{s.firstPrincipalName || 'Mrs. Yapa Dissanayake'}</h4>
+                    <span className="founding-principal-title">
+                      {s.firstPrincipalTitle || 'Founding Principal (1992 – 2002)'}
+                    </span>
+                    <span className="founding-principal-tenure">
+                      {s.firstPrincipalTenure || '1992.06.15 – 2002.03.14'}
+                    </span>
+                  </div>
+                </div>
+
+                {/* Beginning Narrative Paragraphs */}
+                <div className="history-beginning-text-flow">
+                  <p>
+                    {s.historyBeginningText ||
+                      'Gampaha Thakshila Maha Vidyalaya was inaugurated on Monday, 15th July 1992 at 10.14 am at an auspicious moment. By the year 2026, Thakshila Vidyalaya celebrates 35 years of proud history.'}
+                  </p>
+                  <p>
+                    The school commenced under the dedicated leadership of Founding Principal{' '}
+                    <strong>{s.firstPrincipalName || 'Mrs. Yapa Dissanayake'}</strong>, with a pioneering staff of{' '}
+                    <strong>{s.startingStaff || '6 Teachers'}</strong> and{' '}
+                    <strong>{s.startingStudents || 'nearly 60 students in three Grade 6 classes'}</strong>.
+                    Through unwavering commitment, discipline, and community support, the foundation was laid for what has become one of Gampaha's most distinguished educational institutions.
+                  </p>
+                </div>
               </div>
-              <div className="subsection-header-info">
-                <span className="history-eyebrow-mini">THE AUSPICIOUS DAWN</span>
-                <h3 className="history-subsection-title">Our Beginning (අපගේ ආරම්භය)</h3>
-                <p className="history-subsection-desc">
-                  {s.historyBeginningText ||
-                    'Gampaha Thakshila Maha Vidyalaya was inaugurated on Monday, 15th July 1992 at 10.14 am at an auspicious moment. By the year 2026, Thakshila Vidyalaya celebrates 35 years of proud history.'}
+            </div>
+
+            {/* Subsection 2: Thakshila Today */}
+            <div className="history-simple-block">
+              <h3 className="history-simple-heading">
+                <span className="heading-bullet" /> Thakshila Today (අද තක්ෂිලාව)
+              </h3>
+              <div className="history-simple-paragraphs">
+                {(s.historyTodayText ||
+                  'Today, Thakshila is a leading 1AB mixed school in the region, where over 2,000 students study from Grade 6 to Grade 11 and in the Advanced Level streams of Science, Mathematics, Commerce and Arts, in both Sinhala and Bilingual mediums.\n\nUnder the leadership of the present Principal, Mr. T. M. Premavansha, and with the guidance of 94 teachers, the school is committed to creating a perfect generation of students, rich in virtues and excellent personality, through a quality teaching-learning process.'
+                )
+                  .split(/\r?\n\s*\r?\n/)
+                  .map((para, idx) => (
+                    <p key={idx}>{para}</p>
+                  ))}
+              </div>
+            </div>
+
+            {/* Subsection 3: Academic Excellence */}
+            <div className="history-simple-block">
+              <h3 className="history-simple-heading">
+                <span className="heading-bullet" /> Academic Excellence (ශාස්ත්‍රීය විශිෂ්ටත්වය)
+              </h3>
+              <div className="history-simple-paragraphs">
+                {(s.historyAcademicText ||
+                  'For several years, the school has earned a reputation among the leading schools in the Gampaha Zone through the results of the G.C.E. (Ordinary Level) and G.C.E. (Advanced Level) examinations.\n\nOur aim is to produce disciplined, law-abiding citizens who can fearlessly face future challenges through co-curricular and extracurricular activities.'
+                )
+                  .split(/\r?\n\s*\r?\n/)
+                  .map((para, idx) => (
+                    <p key={idx}>{para}</p>
+                  ))}
+              </div>
+            </div>
+
+            {/* Subsection 4: Beyond the Classroom */}
+            <div className="history-simple-block">
+              <h3 className="history-simple-heading">
+                <span className="heading-bullet" /> Beyond the Classroom (පන්ති කාමරයෙන් ඔබ්බට)
+              </h3>
+              <div className="history-simple-paragraphs">
+                <p>
+                  Our students continuously achieve national and regional victories across diverse co-curricular and extracurricular fields, building leadership, character, and team spirit.
+                </p>
+                <p>
+                  Key activity spheres include Sports, Athletics and Aesthetics (Track &amp; Field, Stage Drama, Music, Traditional Dance, and Literary Competitions), Science, Technology &amp; Mathematics (STEM innovations, Science Olympiads, and IT exhibitions), Social Sciences (Parliamentary Debating, Commerce Society, and United Nations Assemblies), as well as Cadetting, Astronomy, Chess, Karate, Scouting, and Environmental Pioneers.
                 </p>
               </div>
             </div>
 
-            <div className="beginning-content-grid">
-              {/* Left Column: Founding Milestone Credentials (Unique formal bullet method) */}
-              <div className="beginning-credentials-col">
-                <h4 className="credentials-block-title">
-                  <Award size={18} /> Pioneering Foundation Credentials (1992)
-                </h4>
-                <div className="formal-credentials-grid">
-                  <div className="formal-cred-card cred-date">
-                    <div className="cred-icon-box">
-                      <Clock size={20} />
-                    </div>
-                    <div className="cred-details">
-                      <span className="cred-label">Inauguration Moment</span>
-                      <strong className="cred-value">{s.historyBeginningDate || 'Monday, 15th July 1992 at 10.14 am'}</strong>
-                      <span className="cred-sub">Auspicious Beginning of Thakshila Vidyalaya</span>
-                    </div>
-                  </div>
-
-                  <div className="formal-cred-card cred-principal">
-                    <div className="cred-icon-box">
-                      <GraduationCap size={20} />
-                    </div>
-                    <div className="cred-details">
-                      <span className="cred-label">Founding Principal</span>
-                      <strong className="cred-value">{s.firstPrincipalName || 'Mrs. Yapa Dissanayake'}</strong>
-                      <span className="cred-sub">Pioneering Head of Institution (1992.06.15 – 2002.03.14)</span>
-                    </div>
-                  </div>
-
-                  <div className="formal-cred-card cred-staff">
-                    <div className="cred-icon-box">
-                      <Users size={20} />
-                    </div>
-                    <div className="cred-details">
-                      <span className="cred-label">Starting Staff</span>
-                      <strong className="cred-value">{s.startingStaff || '6 Teachers'}</strong>
-                      <span className="cred-sub">Dedicated Founding Faculty of Educators</span>
-                    </div>
-                  </div>
-
-                  <div className="formal-cred-card cred-students">
-                    <div className="cred-icon-box">
-                      <BookOpen size={20} />
-                    </div>
-                    <div className="cred-details">
-                      <span className="cred-label">Starting Students</span>
-                      <strong className="cred-value">{s.startingStudents || 'Nearly 60 students in three Grade 6 classes'}</strong>
-                      <span className="cred-sub">First Student Cohort to Enter Thakshila</span>
-                    </div>
-                  </div>
-
-                  <div className="formal-cred-card cred-heritage">
-                    <div className="cred-icon-box">
-                      <Sparkles size={20} />
-                    </div>
-                    <div className="cred-details">
-                      <span className="cred-label">Collegiate Milestone</span>
-                      <strong className="cred-value">35 Years of Proud History (1992 – 2026/2027)</strong>
-                      <span className="cred-sub">Nurturing Generations of Virtuous Citizens</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Right Column: Dedicated First Principal Portrait Card */}
-              <div className="first-principal-portrait-card">
-                <div className="first-principal-photo-frame">
-                  <img
-                    src={s.firstPrincipalImage || '/Pictures/principal-office-vintage.jpg'}
-                    alt={s.firstPrincipalName || 'Mrs. Yapa Dissanayake - Founding Principal'}
-                    className="first-principal-photo"
-                  />
-                  <div className="first-principal-gold-ribbon">
-                    <Award size={14} /> FOUNDING PRINCIPAL
-                  </div>
-                </div>
-                <div className="first-principal-caption-box">
-                  <h4>{s.firstPrincipalName || 'Mrs. Yapa Dissanayake'}</h4>
-                  <span className="first-principal-tenure">
-                    {s.firstPrincipalTitle || 'Founding Principal (1992 – 2002)'}
-                  </span>
-                  <p className="first-principal-sinhala-tag">
-                    ප්‍රථම විදුහල්පතිනිය — තක්ෂිලා මාතාවගේ ආරම්භක යුගය මෙහෙයවූ පුරෝගාමී නායිකාව
-                  </p>
-                  <div className="first-principal-tenure-badge">
-                    <Calendar size={13} /> {s.firstPrincipalTenure || '1992.06.15 – 2002.03.14'}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* ============================================================
-              SUBSECTION B: THAKSHILA TODAY (අද තක්ෂිලාව)
-             ============================================================ */}
-          <div className="history-subsection-card today-subsection-card">
-            <div className="history-subsection-header">
-              <div className="subsection-icon-badge today">
-                <Building2 size={22} />
-              </div>
-              <div className="subsection-header-info">
-                <span className="history-eyebrow-mini">CONTEMPORARY EXCELLENCE</span>
-                <h3 className="history-subsection-title">Thakshila Today (අද තක්ෂිලාව)</h3>
-              </div>
-            </div>
-
-            <div className="today-narrative-container">
-              <div className="today-paragraphs">
-                {(s.historyTodayText || '').split(/\r?\n\s*\r?\n/).map((para, idx) => (
-                  <p key={idx} className="today-narrative-para">
-                    {para}
-                  </p>
-                ))}
-              </div>
-
-              {/* Today's Institutional Matrix Chips */}
-              <div className="today-matrix-chips">
-                <div className="today-stat-pill">
-                  <GraduationCap size={16} />
-                  <span>Category: <strong>1AB Mixed School</strong></span>
-                </div>
-                <div className="today-stat-pill">
-                  <Users size={16} />
-                  <span>Student Body: <strong>2,000+ Students</strong></span>
-                </div>
-                <div className="today-stat-pill">
-                  <BookOpen size={16} />
-                  <span>Academic Levels: <strong>Grade 6 to Grade 11 &amp; A/L</strong></span>
-                </div>
-                <div className="today-stat-pill">
-                  <Award size={16} />
-                  <span>A/L Streams: <strong>Science, Maths, Commerce &amp; Arts</strong></span>
-                </div>
-                <div className="today-stat-pill">
-                  <Globe size={16} />
-                  <span>Language Mediums: <strong>Sinhala &amp; Bilingual</strong></span>
-                </div>
-                <div className="today-stat-pill highlight">
-                  <UserCheck size={16} />
-                  <span>Leadership: <strong>Mr. T. M. Premavansha &amp; 94 Teachers</strong></span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* ============================================================
-              SUBSECTION C: ACADEMIC EXCELLENCE (ශාස්ත්‍රීය විශිෂ්ටත්වය)
-             ============================================================ */}
-          <div className="history-subsection-card academic-subsection-card">
-            <div className="history-subsection-header">
-              <div className="subsection-icon-badge academic">
-                <GraduationCap size={22} />
-              </div>
-              <div className="subsection-header-info">
-                <span className="history-eyebrow-mini">SCHOLASTIC DISTINCTION</span>
-                <h3 className="history-subsection-title">Academic Excellence (ශාස්ත්‍රීය විශිෂ්ටත්වය)</h3>
-              </div>
-            </div>
-
-            <div className="academic-narrative-box">
-              <div className="academic-quote-icon">
-                <Quote size={24} />
-              </div>
-              <div className="academic-text-flow">
-                {(s.historyAcademicText || '').split(/\r?\n\s*\r?\n/).map((para, idx) => (
-                  <p key={idx}>{para}</p>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* ============================================================
-              SUBSECTION D: BEYOND THE CLASSROOM (පන්ති කාමරයෙන් ඔබ්බට)
-              Unique Formal Method for Extracurricular Bullet Points
-             ============================================================ */}
-          <div className="history-subsection-card beyond-subsection-card">
-            <div className="history-subsection-header">
-              <div className="subsection-icon-badge beyond">
-                <Trophy size={22} />
-              </div>
-              <div className="subsection-header-info">
-                <span className="history-eyebrow-mini">HOLISTIC STUDENT DEVELOPMENT</span>
-                <h3 className="history-subsection-title">Beyond the Classroom (පන්ති කාමරයෙන් ඔබ්බට)</h3>
-                <p className="history-subsection-desc">
-                  Our students have continuously achieved national and international victories across diverse co-curricular and extracurricular spheres:
-                </p>
-              </div>
-            </div>
-
-            {/* Formal Collegiate Activity Discipline Cards (Unique formal method) */}
-            <div className="formal-disciplines-grid">
-              <div className="formal-discipline-card disc-sports">
-                <div className="disc-header">
-                  <div className="disc-icon-box">
-                    <Trophy size={22} />
-                  </div>
-                  <div>
-                    <span className="disc-subtag">AESTHETICS &amp; ATHLETICS</span>
-                    <h4 className="disc-title">Sports, Aesthetics and Literature</h4>
-                    <span className="disc-sinhala">ක්‍රීඩා, සෞන්දර්ය හා සාහිත්‍ය</span>
-                  </div>
-                </div>
-                <div className="disc-badge-cluster">
-                  <span className="disc-pill">Track &amp; Field Athletics</span>
-                  <span className="disc-pill">Stage Drama</span>
-                  <span className="disc-pill">Classical &amp; Western Music</span>
-                  <span className="disc-pill">Traditional Dance</span>
-                  <span className="disc-pill">Literary &amp; Essay Championships</span>
-                </div>
-              </div>
-
-              <div className="formal-discipline-card disc-stem">
-                <div className="disc-header">
-                  <div className="disc-icon-box">
-                    <Cpu size={22} />
-                  </div>
-                  <div>
-                    <span className="disc-subtag">STEM &amp; INNOVATION</span>
-                    <h4 className="disc-title">Science, Technology &amp; Mathematics</h4>
-                    <span className="disc-sinhala">විද්‍යා, තාක්ෂණ හා ගණිත</span>
-                  </div>
-                </div>
-                <div className="disc-badge-cluster">
-                  <span className="disc-pill">Science Olympiads</span>
-                  <span className="disc-pill">Mathematics Competitions</span>
-                  <span className="disc-pill">Robotics &amp; IT Exhibitions</span>
-                  <span className="disc-pill">Invention &amp; Research Conventions</span>
-                </div>
-              </div>
-
-              <div className="formal-discipline-card disc-social">
-                <div className="disc-header">
-                  <div className="disc-icon-box">
-                    <Globe size={22} />
-                  </div>
-                  <div>
-                    <span className="disc-subtag">HUMANITIES &amp; GLOBAL PERSPECTIVES</span>
-                    <h4 className="disc-title">Social Sciences</h4>
-                    <span className="disc-sinhala">සමාජයීය විද්‍යා</span>
-                  </div>
-                </div>
-                <div className="disc-badge-cluster">
-                  <span className="disc-pill">Parliamentary Debating</span>
-                  <span className="disc-pill">Commerce Society Expositions</span>
-                  <span className="disc-pill">Geographical &amp; Historical Research</span>
-                  <span className="disc-pill">United Nations Student Assemblies</span>
-                </div>
-              </div>
-
-              <div className="formal-discipline-card disc-cadetting">
-                <div className="disc-header">
-                  <div className="disc-icon-box">
-                    <Shield size={22} />
-                  </div>
-                  <div>
-                    <span className="disc-subtag">LEADERSHIP &amp; SERVICE CORPS</span>
-                    <h4 className="disc-title">Cadetting, Astronomy, Chess, Karate, Scouting &amp; Pioneers</h4>
-                    <span className="disc-sinhala">ශිෂ්‍යභට, තාරකා විද්‍යා, චෙස්, කරාතේ, බාලදක්ෂ හා පරිසර නියමුවෝ</span>
-                  </div>
-                </div>
-                <div className="disc-badge-cluster">
-                  <span className="disc-pill">National Cadet Corps (NCC)</span>
-                  <span className="disc-pill">Astronomy &amp; Space Club</span>
-                  <span className="disc-pill">All-Island Chess Champions</span>
-                  <span className="disc-pill">Karate &amp; Martial Arts</span>
-                  <span className="disc-pill">Scouts &amp; Girl Guides</span>
-                  <span className="disc-pill">Environmental Pioneers</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* ============================================================
-              SUBSECTION E: A PROUD ACHIEVEMENT (අභිමානවත් ජයග්‍රහණය)
-              National Productivity Awards Islandwide
-             ============================================================ */}
-          <div className="history-subsection-card achievement-subsection-card">
-            <div className="achievement-honor-banner">
-              <div className="achievement-trophy-cluster">
-                <div className="trophy-halo-ring">
-                  <Award size={36} />
-                </div>
-                <span className="national-honor-seal">ISLAND-WIDE EXCELLENCE</span>
-              </div>
-              <div className="achievement-citation-body">
-                <span className="achievement-laurel-tag">
-                  <Sparkles size={14} /> A PROUD NATIONAL RECOGNITION • අභිමානවත් ජයග්‍රහණය
-                </span>
-                <h3 className="achievement-main-title">
-                  National Productivity Awards Competition 2025/26
-                </h3>
-                <h4 className="achievement-sub-title">
-                  Second Place — Advanced Level Schools Category in Sri Lanka
-                </h4>
-                <p className="achievement-details-para">
+            {/* Subsection 5: A Proud Achievement — National Productivity Awards */}
+            <div className="history-simple-block">
+              <h3 className="history-simple-heading">
+                <span className="heading-bullet" /> A Proud Achievement — National Productivity Awards (අභිමානවත් ජයග්‍රහණය)
+              </h3>
+              <div className="history-simple-paragraphs">
+                <p>
                   {s.historyAchievementText ||
-                    'Second Place in the Advanced Level Schools category at the National Productivity Awards Competition 2025/26, organized by the National Productivity Secretariat, for building a productivity culture within the school.'}
+                    'Second Place in the Advanced Level Schools category at the National Productivity Awards Competition 2025/26, organized by the National Productivity Secretariat, for building an exemplary productivity culture within the school.'}
                 </p>
-                <div className="achievement-meta-row">
-                  <span className="achieve-pill"><Landmark size={14} /> National Productivity Secretariat</span>
-                  <span className="achieve-pill highlight"><Trophy size={14} /> 2nd Place Island-Wide</span>
-                  <span className="achieve-pill"><CheckCircle2 size={14} /> Exemplary Institutional Productivity Culture</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* ============================================================
-              SUBSECTION F: OUR SCHOOL ENVIRONMENT (අපගේ පාසල් පරිසරය)
-             ============================================================ */}
-          <div className="history-subsection-card environment-subsection-card">
-            <div className="history-subsection-header">
-              <div className="subsection-icon-badge environment">
-                <Leaf size={22} />
-              </div>
-              <div className="subsection-header-info">
-                <span className="history-eyebrow-mini">CAMPUS INFRASTRUCTURE &amp; GREEN ECO-CULTURE</span>
-                <h3 className="history-subsection-title">Our School Environment (අපගේ පාසල් පරිසරය)</h3>
               </div>
             </div>
 
-            <div className="environment-content-flow">
-              <div className="environment-narrative">
-                {(s.historyEnvironmentText || '').split(/\r?\n\s*\r?\n/).map((para, idx) => (
-                  <p key={idx} className="env-para">{para}</p>
-                ))}
-              </div>
-
-              {/* Modern Campus Facilities Matrix */}
-              <div className="campus-facilities-matrix">
-                <div className="facility-card">
-                  <div className="facility-icon"><Microscope size={18} /></div>
-                  <div className="facility-info">
-                    <strong>Science Laboratories</strong>
-                    <span>Fully equipped Physics, Chemistry &amp; Biology labs</span>
-                  </div>
-                </div>
-                <div className="facility-card">
-                  <div className="facility-icon"><Cpu size={18} /></div>
-                  <div className="facility-info">
-                    <strong>Computer Units &amp; IT Labs</strong>
-                    <span>Modern digital workstations &amp; high-speed connectivity</span>
-                  </div>
-                </div>
-                <div className="facility-card">
-                  <div className="facility-icon"><Sparkles size={18} /></div>
-                  <div className="facility-info">
-                    <strong>Smart Classrooms</strong>
-                    <span>Interactive displays, smart projectors &amp; LMS integration</span>
-                  </div>
-                </div>
-                <div className="facility-card">
-                  <div className="facility-icon"><Music size={18} /></div>
-                  <div className="facility-info">
-                    <strong>Media Unit &amp; Aesthetics</strong>
-                    <span>Broadcasting audio/video console, music &amp; art studios</span>
-                  </div>
-                </div>
-                <div className="facility-card">
-                  <div className="facility-icon"><Trophy size={18} /></div>
-                  <div className="facility-info">
-                    <strong>Sports Facilities</strong>
-                    <span>Athletic grounds, indoor sports arenas &amp; equipment</span>
-                  </div>
-                </div>
-                <div className="facility-card">
-                  <div className="facility-icon"><Leaf size={18} /></div>
-                  <div className="facility-info">
-                    <strong>Waste Management &amp; Green Campus</strong>
-                    <span>Pioneering eco-friendly recycling &amp; landscaped premises</span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="heritage-concluding-banner">
-                <Award size={20} />
-                <span>
-                  <strong>Gampaha Thakshila Vidyalaya</strong>, with a heritage of 35 years, shines as a proud school.
-                </span>
+            {/* Subsection 6: Our School Environment */}
+            <div className="history-simple-block">
+              <h3 className="history-simple-heading">
+                <span className="heading-bullet" /> Our School Environment (අපගේ පාසල් පරිසරය)
+              </h3>
+              <div className="history-simple-paragraphs">
+                {(s.historyEnvironmentText ||
+                  'Though situated on a limited land close to the main city, the school provides excellent facilities including laboratories, computer units, smart classrooms, media unit, sports, aesthetics, home science and subject units.\n\nWith proper waste management and a beautifully maintained premises, Thakshila has become a pleasant place for all, supported by its teachers, parents, old students and well-wishers.\n\nGampaha Thakshila Vidyalaya, with a heritage of 35 years, shines as a proud school.'
+                )
+                  .split(/\r?\n\s*\r?\n/)
+                  .map((para, idx) => (
+                    <p key={idx}>{para}</p>
+                  ))}
               </div>
             </div>
           </div>

@@ -4770,6 +4770,151 @@ button {
   position: relative;
 }
 
+/* History & Present Simplified Narrative Card */
+.history-simple-article-card {
+  background: #ffffff;
+  border: 1px solid var(--slate-200);
+  border-radius: 16px;
+  padding: 36px 40px;
+  box-shadow: 0 4px 18px rgba(15, 23, 42, 0.05);
+  margin-bottom: 32px;
+}
+
+.history-simple-lead {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: var(--slate-800);
+  font-weight: 500;
+  border-left: 4px solid var(--maroon-800);
+  padding: 12px 18px;
+  margin: 0 0 28px 0;
+  background: rgba(74, 5, 24, 0.03);
+  border-radius: 0 8px 8px 0;
+}
+
+.history-simple-block {
+  margin-bottom: 28px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--slate-100);
+}
+
+.history-simple-block:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.history-simple-heading {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--maroon-950);
+  margin: 0 0 14px 0;
+}
+
+.history-simple-heading .heading-bullet {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--maroon-800);
+  flex-shrink: 0;
+}
+
+.history-simple-paragraphs p {
+  font-size: 0.95rem;
+  line-height: 1.75;
+  color: var(--slate-700);
+  margin: 0 0 12px 0;
+}
+
+.history-simple-paragraphs p:last-child {
+  margin-bottom: 0;
+}
+
+/* Beginning Layout with Founding Principal Photo */
+.history-beginning-simple-layout {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 28px;
+  align-items: start;
+}
+
+.founding-principal-simple-card {
+  background: #fffdfa;
+  border: 1px solid #fed7aa;
+  border-radius: 14px;
+  padding: 12px;
+  text-align: center;
+  box-shadow: 0 4px 14px rgba(180, 83, 9, 0.06);
+}
+
+.founding-principal-photo-wrap {
+  width: 100%;
+  aspect-ratio: 4 / 4.2;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 2px solid #f59e0b;
+  margin-bottom: 10px;
+  background: var(--slate-900);
+}
+
+.founding-principal-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+  display: block;
+}
+
+.founding-principal-info h4 {
+  margin: 0 0 2px 0;
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--maroon-900);
+}
+
+.founding-principal-title {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #b45309;
+  margin-bottom: 4px;
+}
+
+.founding-principal-tenure {
+  display: block;
+  font-size: 0.74rem;
+  color: var(--slate-500);
+}
+
+.history-beginning-text-flow p {
+  font-size: 0.95rem;
+  line-height: 1.75;
+  color: var(--slate-700);
+  margin: 0 0 12px 0;
+}
+
+.history-beginning-text-flow p:last-child {
+  margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+  .history-beginning-simple-layout {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+  .founding-principal-simple-card {
+    max-width: 260px;
+    margin: 0 auto;
+  }
+  .history-simple-article-card {
+    padding: 24px 18px;
+  }
+}
+
 .history-hero-lead-card {
   display: flex;
   align-items: center;
