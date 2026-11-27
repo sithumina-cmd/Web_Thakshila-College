@@ -159,8 +159,10 @@ export default function EditAboutModal({
         historyOverview: merged.historyOverview,
         historyImage: merged.historyImage,
         historyImageCaption: merged.historyImageCaption,
-        pastPrincipals: Array.isArray(merged.pastPrincipals)
+        pastPrincipals: Array.isArray(merged.pastPrincipals) && merged.pastPrincipals.length > 0
           ? merged.pastPrincipals.map((p) => ({ ...p }))
+          : Array.isArray(merged.principals) && merged.principals.length > 0
+          ? merged.principals.map((p) => ({ ...p }))
           : DEFAULT_SCHOOL_CONFIG.pastPrincipals || [],
 
         // 5. School Identity

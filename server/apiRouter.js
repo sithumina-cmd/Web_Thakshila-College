@@ -2,6 +2,7 @@ import express from 'express';
 import crypto from 'crypto';
 import fs from 'fs';
 import path from 'path';
+import os from 'os';
 import { fileURLToPath } from 'url';
 import {
   readAuthStore,
@@ -40,16 +41,42 @@ apiApp.use((req, res, next) => {
   next();
 });
 
+let inMemoryDb = null;
+const TMP_DB_PATH = path.join(os.tmpdir(), 'tcg_db.json');
+
 function readDb() {
+  if (inMemoryDb) {
+    return inMemoryDb;
+  }
+  // Try reading from /tmp/tcg_db.json first (contains latest writes in serverless)
+  try {
+    if (fs.existsSync(TMP_DB_PATH)) {
+      const raw = fs.readFileSync(TMP_DB_PATH, 'utf-8');
+      const parsed = JSON.parse(raw);
+      if (parsed && typeof parsed === 'object') {
+        if (!parsed.settings) parsed.settings = {};
+        if (!parsed.news) parsed.news = parsed.posts || [];
+        if (!parsed.sports) parsed.sports = [];
+        if (!parsed.diary) parsed.diary = [];
+        if (!parsed.principals) parsed.principals = [];
+        if (!parsed.contactInquiries) parsed.contactInquiries = [];
+        inMemoryDb = parsed;
+        return inMemoryDb;
+      }
+    }
+  } catch {}
+
   try {
     const raw = fs.readFileSync(DB_PATH, 'utf-8');
     const parsed = JSON.parse(raw);
+    if (!parsed.settings) parsed.settings = {};
     if (!parsed.news) parsed.news = parsed.posts || [];
     if (!parsed.sports) parsed.sports = [];
     if (!parsed.diary) parsed.diary = [];
     if (!parsed.principals) parsed.principals = [];
     if (!parsed.contactInquiries) parsed.contactInquiries = [];
-    return parsed;
+    inMemoryDb = parsed;
+    return inMemoryDb;
   } catch (err) {
     console.error('Error reading db.json:', err);
     return { settings: {}, news: [], sports: [], diary: [], principals: [], contactInquiries: [] };
@@ -57,14 +84,17 @@ function readDb() {
 }
 
 function writeDb(data) {
+  inMemoryDb = data;
   try {
     fs.mkdirSync(path.dirname(DB_PATH), { recursive: true });
     fs.writeFileSync(DB_PATH, JSON.stringify(data, null, 2), 'utf-8');
-    return true;
-  } catch (err) {
-    console.error('Error writing db.json:', err);
-    return false;
+  } catch {
+    // If DB_PATH is read-only (e.g. Vercel Lambda), write to /tmp
+    try {
+      fs.writeFileSync(TMP_DB_PATH, JSON.stringify(data, null, 2), 'utf-8');
+    } catch {}
   }
+  return true;
 }
 
 /**

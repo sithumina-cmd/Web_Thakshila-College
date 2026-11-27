@@ -19,7 +19,9 @@ export function compressImageFile(file, maxWidth = 1000, quality = 0.82) {
         canvas.height = Math.round(img.height * scale);
         const ctx = canvas.getContext('2d');
         ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-        const outType = file.type === 'image/png' ? 'image/png' : 'image/jpeg';
+        // Photos & portraits convert to JPEG for high fidelity and compact size
+        const isTransparentPng = file.type === 'image/png' && (file.name.toLowerCase().includes('logo') || file.name.toLowerCase().includes('crest'));
+        const outType = isTransparentPng ? 'image/png' : 'image/jpeg';
         resolve(canvas.toDataURL(outType, quality));
       };
       img.onerror = () => resolve(result);

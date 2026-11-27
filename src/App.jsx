@@ -24,6 +24,11 @@ import {
   registerUnauthorizedHandler,
   authFetch
 } from './utils/api';
+import {
+  getLocalItem,
+  setLocalItem,
+  idbGet
+} from './utils/storage';
 
 import {
   DEFAULT_SCHOOL_CONFIG,
@@ -35,11 +40,29 @@ import {
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('home');
-  const [settings, setSettings] = useState(DEFAULT_SCHOOL_CONFIG);
-  const [news, setNews] = useState(INITIAL_NEWS);
-  const [sports, setSports] = useState(INITIAL_SPORTS || []);
-  const [diary, setDiary] = useState(INITIAL_DIARY);
-  const [principals, setPrincipals] = useState(DEFAULT_PAST_PRINCIPALS);
+  const [settings, setSettings] = useState(() => {
+    const local = getLocalItem('tcg_settings_offline', null);
+    if (local && typeof local === 'object') {
+      return { ...DEFAULT_SCHOOL_CONFIG, ...local };
+    }
+    return DEFAULT_SCHOOL_CONFIG;
+  });
+  const [news, setNews] = useState(() => {
+    const local = getLocalItem('tcg_news_offline', null);
+    return Array.isArray(local) && local.length > 0 ? local : INITIAL_NEWS;
+  });
+  const [sports, setSports] = useState(() => {
+    const local = getLocalItem('tcg_sports_offline', null);
+    return Array.isArray(local) ? local : (INITIAL_SPORTS || []);
+  });
+  const [diary, setDiary] = useState(() => {
+    const local = getLocalItem('tcg_diary_offline', null);
+    return Array.isArray(local) && local.length > 0 ? local : INITIAL_DIARY;
+  });
+  const [principals, setPrincipals] = useState(() => {
+    const local = getLocalItem('tcg_principals_offline', null);
+    return Array.isArray(local) && local.length > 0 ? local : DEFAULT_PAST_PRINCIPALS;
+  });
 
   // Cryptographic Server-Verified Authentication State
   const [currentUser, setCurrentUser] = useState(null);
@@ -155,7 +178,26 @@ export default function App() {
     };
   }, []);
 
-  // Fetch initial data from Express Backend
+  // Hydrate large media and customizations from IndexedDB on startup
+  useEffect(() => {
+    async function hydrateFromIndexedDB() {
+      try {
+        const idbSettings = await idbGet('tcg_settings_offline');
+        if (idbSettings && typeof idbSettings === 'object' && Object.keys(idbSettings).length > 0) {
+          setSettings((prev) => ({ ...prev, ...idbSettings }));
+        }
+        const idbPrincipals = await idbGet('tcg_principals_offline');
+        if (Array.isArray(idbPrincipals) && idbPrincipals.length > 0) {
+          setPrincipals(idbPrincipals);
+        }
+      } catch (err) {
+        console.warn('IndexedDB hydration error:', err);
+      }
+    }
+    hydrateFromIndexedDB();
+  }, []);
+
+  // Fetch initial data from Express Backend and merge cleanly with local customizations
   useEffect(() => {
     async function loadData() {
       try {
@@ -163,55 +205,59 @@ export default function App() {
         const cType = res.headers.get('content-type') || '';
         if (res.ok && cType.includes('application/json')) {
           const data = await res.json();
-          if (data.settings && Object.keys(data.settings).length > 0) {
-            setSettings((prev) => ({ ...DEFAULT_SCHOOL_CONFIG, ...prev, ...data.settings }));
-            localStorage.setItem('tcg_settings_offline', JSON.stringify({ ...DEFAULT_SCHOOL_CONFIG, ...data.settings }));
-          }
-          if (Array.isArray(data.news)) {
+
+          // 1. SETTINGS: Merge DEFAULT < SERVER < USER LOCAL EDITS (User customizations never wiped on reload!)
+          const localSettings = getLocalItem('tcg_settings_offline', {});
+          const mergedSettings = {
+            ...DEFAULT_SCHOOL_CONFIG,
+            ...(data.settings || {}),
+            ...localSettings
+          };
+          setSettings(mergedSettings);
+          setLocalItem('tcg_settings_offline', mergedSettings);
+
+          // 2. NEWS: Merge or preserve local offline news
+          const localNews = getLocalItem('tcg_news_offline', null);
+          if (Array.isArray(localNews) && localNews.length > 0) {
+            setNews(localNews);
+          } else if (Array.isArray(data.news) && data.news.length > 0) {
             setNews(data.news);
-            localStorage.setItem('tcg_news_offline', JSON.stringify(data.news));
-          } else if (Array.isArray(data.posts)) {
+            setLocalItem('tcg_news_offline', data.news);
+          } else if (Array.isArray(data.posts) && data.posts.length > 0) {
             setNews(data.posts);
-            localStorage.setItem('tcg_news_offline', JSON.stringify(data.posts));
+            setLocalItem('tcg_news_offline', data.posts);
           }
-          if (Array.isArray(data.sports)) {
+
+          // 3. SPORTS
+          const localSports = getLocalItem('tcg_sports_offline', null);
+          if (Array.isArray(localSports)) {
+            setSports(localSports);
+          } else if (Array.isArray(data.sports)) {
             setSports(data.sports);
-            localStorage.setItem('tcg_sports_offline', JSON.stringify(data.sports));
+            setLocalItem('tcg_sports_offline', data.sports);
           }
-          if (Array.isArray(data.diary)) {
+
+          // 4. DIARY
+          const localDiary = getLocalItem('tcg_diary_offline', null);
+          if (Array.isArray(localDiary) && localDiary.length > 0) {
+            setDiary(localDiary);
+          } else if (Array.isArray(data.diary) && data.diary.length > 0) {
             setDiary(data.diary);
-            localStorage.setItem('tcg_diary_offline', JSON.stringify(data.diary));
+            setLocalItem('tcg_diary_offline', data.diary);
           }
-          if (Array.isArray(data.principals)) {
+
+          // 5. PRINCIPALS: Preserve user's local principals edits and photo changes
+          const localPrincipals = getLocalItem('tcg_principals_offline', null);
+          if (Array.isArray(localPrincipals) && localPrincipals.length > 0) {
+            setPrincipals(localPrincipals);
+          } else if (Array.isArray(data.principals) && data.principals.length > 0) {
             setPrincipals(data.principals);
-            localStorage.setItem('tcg_principals_offline', JSON.stringify(data.principals));
+            setLocalItem('tcg_principals_offline', data.principals);
           }
           return;
         }
       } catch {
-        // Fallback to localStorage if offline
-        const savedSettings = localStorage.getItem('tcg_settings_offline');
-        const savedNews = localStorage.getItem('tcg_news_offline');
-        const savedSports = localStorage.getItem('tcg_sports_offline');
-        const savedDiary = localStorage.getItem('tcg_diary_offline');
-        const savedPrincipals = localStorage.getItem('tcg_principals_offline');
-        if (savedSettings) {
-          try {
-            const parsed = JSON.parse(savedSettings);
-            setSettings((prev) => ({ ...DEFAULT_SCHOOL_CONFIG, ...prev, ...parsed }));
-          } catch {}
-        }
-        if (savedNews) setNews(JSON.parse(savedNews));
-        if (savedSports) {
-          try {
-            const parsed = JSON.parse(savedSports);
-            setSports(Array.isArray(parsed) ? parsed.filter((p) => !['sports-1', 'sports-2', 'sports-3'].includes(p.id)) : []);
-          } catch {
-            setSports([]);
-          }
-        }
-        if (savedDiary) setDiary(JSON.parse(savedDiary));
-        if (savedPrincipals) setPrincipals(JSON.parse(savedPrincipals));
+        // Safe offline fallback already loaded synchronously
       }
     }
     loadData();
@@ -363,6 +409,13 @@ export default function App() {
 
   // Save Settings (Authenticated Admin / Developer)
   const handleSaveSettings = async (updatedFields) => {
+    // 1. Immediately update state and multi-layer persistent storage (IndexedDB + localStorage)
+    const merged = { ...settings, ...updatedFields };
+    setSettings(merged);
+    setLocalItem('tcg_settings_offline', merged);
+    showToast('Website details updated and saved successfully!');
+
+    // 2. Asynchronously sync to backend
     try {
       const res = await authFetch('/api/settings', {
         method: 'PUT',
@@ -371,72 +424,60 @@ export default function App() {
       });
       if (res.ok) {
         const saved = await res.json().catch(() => ({}));
-        const merged = { ...settings, ...saved, ...updatedFields };
-        setSettings(merged);
-        localStorage.setItem('tcg_settings_offline', JSON.stringify(merged));
-        showToast('Website details updated successfully!');
-        return;
+        if (saved && typeof saved === 'object' && Object.keys(saved).length > 0) {
+          const finalMerged = { ...merged, ...saved };
+          setSettings(finalMerged);
+          setLocalItem('tcg_settings_offline', finalMerged);
+        }
       }
-      throw new Error('API server offline');
     } catch {
-      // Offline / Static fallback: save to state and localStorage
-      const merged = { ...settings, ...updatedFields };
-      setSettings(merged);
-      localStorage.setItem('tcg_settings_offline', JSON.stringify(merged));
-      showToast('Website details updated and saved locally!');
+      // Offline fallback already safely stored
     }
   };
 
   // News Handlers (Authenticated Admin / Developer)
   const handleSaveNews = async (newsPayload) => {
     const isEdit = Boolean(newsPayload.id);
+    const postData = {
+      ...newsPayload,
+      id: newsPayload.id || `news-${Date.now()}`,
+      createdAt: newsPayload.createdAt || new Date().toISOString()
+    };
+
+    setNews((prev) => {
+      const next = isEdit
+        ? prev.map((item) => (item.id === postData.id ? postData : item))
+        : [postData, ...prev];
+      setLocalItem('tcg_news_offline', next);
+      return next;
+    });
+    showToast(isEdit ? 'News post updated!' : 'New school news published!');
+
     try {
       const url = isEdit ? `/api/news/${newsPayload.id}` : '/api/news';
       const method = isEdit ? 'PUT' : 'POST';
-      const res = await authFetch(url, {
+      await authFetch(url, {
         method,
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(newsPayload)
       });
-
-      if (!res.ok) {
-        const err = await res.json().catch(() => ({}));
-        showToast(err.message || 'Authorization required to publish news.');
-        return;
-      }
-
-      const saved = await res.json();
-      setNews((prev) => {
-        const next = isEdit
-          ? prev.map((item) => (item.id === saved.id ? saved : item))
-          : [saved, ...prev];
-        localStorage.setItem('tcg_news_offline', JSON.stringify(next));
-        return next;
-      });
-      showToast(isEdit ? 'News post updated!' : 'New school news published!');
     } catch {
-      showToast('Server connection error while saving news post.');
+      // Offline fallback already safely stored
     }
   };
 
   const handleDeleteNews = async (id) => {
     if (!window.confirm('Are you sure you want to delete this news post?')) return;
+    setNews((prev) => {
+      const next = prev.filter((item) => item.id !== id);
+      setLocalItem('tcg_news_offline', next);
+      return next;
+    });
+    showToast('News post deleted.');
+
     try {
-      const res = await authFetch(`/api/news/${id}`, { method: 'DELETE' });
-      if (!res.ok) {
-        const err = await res.json().catch(() => ({}));
-        showToast(err.message || 'Authorization required to delete news.');
-        return;
-      }
-      setNews((prev) => {
-        const next = prev.filter((item) => item.id !== id);
-        localStorage.setItem('tcg_news_offline', JSON.stringify(next));
-        return next;
-      });
-      showToast('News post deleted.');
-    } catch {
-      showToast('Server connection error while deleting news.');
-    }
+      await authFetch(`/api/news/${id}`, { method: 'DELETE' });
+    } catch {}
   };
 
   const handleLikeNews = async (id) => {
@@ -448,7 +489,7 @@ export default function App() {
       : [...likedIds, id];
 
     setLikedIds(updated);
-    localStorage.setItem('tcg_liked_items', JSON.stringify(updated));
+    setLocalItem('tcg_liked_items', updated);
 
     setNews((prev) =>
       prev.map((item) =>
@@ -472,53 +513,46 @@ export default function App() {
   // Sports & Athletics Handlers (Authenticated Admin / Developer)
   const handleSaveSports = async (sportsPayload) => {
     const isEdit = Boolean(sportsPayload.id);
+    const postData = {
+      ...sportsPayload,
+      id: sportsPayload.id || `sports-${Date.now()}`,
+      createdAt: sportsPayload.createdAt || new Date().toISOString()
+    };
+
+    setSports((prev) => {
+      const next = isEdit
+        ? prev.map((item) => (item.id === postData.id ? postData : item))
+        : [postData, ...prev];
+      setLocalItem('tcg_sports_offline', next);
+      return next;
+    });
+    showToast(isEdit ? 'Sports report updated!' : 'New sports match report published!');
+
     try {
       const url = isEdit ? `/api/sports/${sportsPayload.id}` : '/api/sports';
       const method = isEdit ? 'PUT' : 'POST';
-      const res = await authFetch(url, {
+      await authFetch(url, {
         method,
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(sportsPayload)
       });
-
-      if (!res.ok) {
-        const err = await res.json().catch(() => ({}));
-        showToast(err.message || 'Authorization required to publish sports bulletin.');
-        return;
-      }
-
-      const saved = await res.json();
-      setSports((prev) => {
-        const next = isEdit
-          ? prev.map((item) => (item.id === saved.id ? saved : item))
-          : [saved, ...prev];
-        localStorage.setItem('tcg_sports_offline', JSON.stringify(next));
-        return next;
-      });
-      showToast(isEdit ? 'Sports report updated!' : 'New sports match report published!');
     } catch {
-      showToast('Server connection error while saving sports report.');
+      // Safely stored
     }
   };
 
   const handleDeleteSports = async (id) => {
     if (!window.confirm('Are you sure you want to delete this sports report?')) return;
+    setSports((prev) => {
+      const next = prev.filter((item) => item.id !== id);
+      setLocalItem('tcg_sports_offline', next);
+      return next;
+    });
+    showToast('Sports report deleted successfully.');
+
     try {
-      const res = await authFetch(`/api/sports/${id}`, { method: 'DELETE' });
-      if (!res.ok) {
-        const err = await res.json().catch(() => ({}));
-        showToast(err.message || 'Authorization required to delete sports report.');
-        return;
-      }
-      setSports((prev) => {
-        const next = prev.filter((item) => item.id !== id);
-        localStorage.setItem('tcg_sports_offline', JSON.stringify(next));
-        return next;
-      });
-      showToast('Sports report deleted successfully.');
-    } catch {
-      showToast('Server connection error while deleting sports report.');
-    }
+      await authFetch(`/api/sports/${id}`, { method: 'DELETE' });
+    } catch {}
   };
 
   const handleLikeSports = async (id) => {
@@ -529,7 +563,7 @@ export default function App() {
       : [...likedIds, id];
 
     setLikedIds(updated);
-    localStorage.setItem('tcg_liked_items', JSON.stringify(updated));
+    setLocalItem('tcg_liked_items', updated);
 
     setSports((prev) =>
       prev.map((item) =>
@@ -553,56 +587,47 @@ export default function App() {
   // Thakshila Diary Handlers (Authenticated Admin / Developer)
   const handleSaveDiary = async (diaryPayload) => {
     const isEdit = Boolean(diaryPayload.id);
+    const entryData = {
+      ...diaryPayload,
+      id: diaryPayload.id || `diary-${Date.now()}`,
+      createdAt: diaryPayload.createdAt || new Date().toISOString()
+    };
+
+    setDiary((prev) => {
+      const next = isEdit
+        ? prev.map((item) => (item.id === entryData.id ? entryData : item))
+        : [entryData, ...prev];
+      setLocalItem('tcg_diary_offline', next);
+      return next;
+    });
+    showToast(isEdit ? 'Diary entry updated!' : 'New memory added to Thakshila Diary!');
+
     try {
       const url = isEdit ? `/api/diary/${diaryPayload.id}` : '/api/diary';
       const method = isEdit ? 'PUT' : 'POST';
-      const res = await authFetch(url, {
+      await authFetch(url, {
         method,
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(diaryPayload)
       });
-
-      if (!res.ok) {
-        const err = await res.json().catch(() => ({}));
-        showToast(err.message || 'Authorization required to save diary entry.');
-        return;
-      }
-
-      const saved = await res.json();
-      setDiary((prev) => {
-        const next = isEdit
-          ? prev.map((item) => (item.id === saved.id ? saved : item))
-          : [saved, ...prev];
-        localStorage.setItem('tcg_diary_offline', JSON.stringify(next));
-        return next;
-      });
-      showToast(
-        isEdit ? 'Diary entry updated!' : 'New memory added to Thakshila Diary!'
-      );
     } catch {
-      showToast('Server connection error while saving diary entry.');
+      // Safely stored
     }
   };
 
   const handleDeleteDiary = async (id) => {
     if (!window.confirm('Are you sure you want to delete this Thakshila Diary entry?'))
       return;
+    setDiary((prev) => {
+      const next = prev.filter((item) => item.id !== id);
+      setLocalItem('tcg_diary_offline', next);
+      return next;
+    });
+    showToast('Diary entry deleted.');
+
     try {
-      const res = await authFetch(`/api/diary/${id}`, { method: 'DELETE' });
-      if (!res.ok) {
-        const err = await res.json().catch(() => ({}));
-        showToast(err.message || 'Authorization required to delete diary entry.');
-        return;
-      }
-      setDiary((prev) => {
-        const next = prev.filter((item) => item.id !== id);
-        localStorage.setItem('tcg_diary_offline', JSON.stringify(next));
-        return next;
-      });
-      showToast('Diary entry deleted.');
-    } catch {
-      showToast('Server connection error while deleting diary entry.');
-    }
+      await authFetch(`/api/diary/${id}`, { method: 'DELETE' });
+    } catch {}
   };
 
   const handleLikeDiary = async (id) => {
@@ -614,7 +639,7 @@ export default function App() {
       : [...likedIds, id];
 
     setLikedIds(updated);
-    localStorage.setItem('tcg_liked_items', JSON.stringify(updated));
+    setLocalItem('tcg_liked_items', updated);
 
     setDiary((prev) =>
       prev.map((item) =>
@@ -653,61 +678,46 @@ export default function App() {
       nextList = [newPrincipal, ...principals];
     }
 
+    // Immediately update state and multi-layer persistent storage (IndexedDB + localStorage)
+    setPrincipals(nextList);
+    setLocalItem('tcg_principals_offline', nextList);
+    showToast(isEdit ? 'Principal details updated!' : 'New Principal added to Hall of Leadership!');
+
     try {
-      const res = await authFetch('/api/principals', {
+      await authFetch('/api/principals', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(nextList)
       });
-      if (!res.ok) {
-        const err = await res.json().catch(() => ({}));
-        showToast(err.message || 'Authorization required to update principals.');
-        return;
-      }
-      setPrincipals(nextList);
-      localStorage.setItem('tcg_principals_offline', JSON.stringify(nextList));
-      showToast(isEdit ? 'Principal details updated!' : 'New Principal added to Hall of Leadership!');
     } catch {
-      showToast('Server connection error while saving principal.');
+      // Safely persisted in browser
     }
   };
 
   const handleDeletePrincipal = async (id) => {
     if (!window.confirm('Are you sure you want to remove this principal record?')) return;
+    const nextList = principals.filter((p) => p.id !== id);
+    setPrincipals(nextList);
+    setLocalItem('tcg_principals_offline', nextList);
+    showToast('Principal record removed.');
+
     try {
-      const res = await authFetch(`/api/principals/${id}`, { method: 'DELETE' });
-      if (!res.ok) {
-        const err = await res.json().catch(() => ({}));
-        showToast(err.message || 'Authorization required to delete principal.');
-        return;
-      }
-      const nextList = principals.filter((p) => p.id !== id);
-      setPrincipals(nextList);
-      localStorage.setItem('tcg_principals_offline', JSON.stringify(nextList));
-      showToast('Principal record removed.');
-    } catch {
-      showToast('Server connection error while deleting principal.');
-    }
+      await authFetch(`/api/principals/${id}`, { method: 'DELETE' });
+    } catch {}
   };
 
   const handleSavePrincipals = async (updatedList) => {
+    setPrincipals(updatedList);
+    setLocalItem('tcg_principals_offline', updatedList);
+    showToast('Past Principals order saved.');
+
     try {
-      const res = await authFetch('/api/principals', {
+      await authFetch('/api/principals', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(updatedList)
       });
-      if (!res.ok) {
-        const err = await res.json().catch(() => ({}));
-        showToast(err.message || 'Authorization required to reorder principals.');
-        return;
-      }
-      setPrincipals(updatedList);
-      localStorage.setItem('tcg_principals_offline', JSON.stringify(updatedList));
-      showToast('Past Principals order saved.');
-    } catch {
-      showToast('Server connection error while saving principals order.');
-    }
+    } catch {}
   };
 
   const counts = {

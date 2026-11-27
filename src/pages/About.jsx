@@ -37,6 +37,7 @@ import { DEFAULT_SCHOOL_CONFIG } from '../config';
 
 export default function About({
   settings,
+  principals,
   isAdmin,
   isEditMode,
   onOpenEditSettingsModal,
@@ -51,7 +52,9 @@ export default function About({
       : DEFAULT_SCHOOL_CONFIG.academicSections;
 
   const pastPrincipals =
-    Array.isArray(s.pastPrincipals) && s.pastPrincipals.length > 0
+    Array.isArray(principals) && principals.length > 0
+      ? principals
+      : Array.isArray(s.pastPrincipals) && s.pastPrincipals.length > 0
       ? s.pastPrincipals
       : Array.isArray(s.principals) && s.principals.length > 0
       ? s.principals
