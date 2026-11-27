@@ -102,9 +102,10 @@ export default function EditAboutModal({
   const [activeTab, setActiveTab] = useState(initialSection);
   const [saving, setSaving] = useState(false);
   const [formData, setFormData] = useState({});
+  const prevOpenRef = useRef(false);
 
   useEffect(() => {
-    if (isOpen) {
+    if (isOpen && !prevOpenRef.current) {
       setActiveTab(initialSection || 'intro');
       const merged = { ...DEFAULT_SCHOOL_CONFIG, ...(settings || {}) };
       setFormData({
@@ -151,6 +152,7 @@ export default function EditAboutModal({
         startingStudents: merged.startingStudents,
         historyTodayText: merged.historyTodayText,
         historyAcademicText: merged.historyAcademicText,
+        historyBeyondText: merged.historyBeyondText,
         historyAchievementTitle: merged.historyAchievementTitle,
         historyAchievementText: merged.historyAchievementText,
         historyEnvironmentText: merged.historyEnvironmentText,
@@ -199,7 +201,14 @@ export default function EditAboutModal({
           : DEFAULT_SCHOOL_CONFIG.houses
       });
     }
-  }, [isOpen, settings, initialSection]);
+    prevOpenRef.current = isOpen;
+  }, [isOpen]);
+
+  useEffect(() => {
+    if (isOpen && initialSection) {
+      setActiveTab(initialSection);
+    }
+  }, [initialSection]);
 
   if (!isOpen) return null;
 
@@ -681,6 +690,14 @@ export default function EditAboutModal({
                   />
                 </div>
                 <div className="meta-field" style={{ marginTop: '10px' }}>
+                  <label>Beyond the Classroom (Co-curricular &amp; Extracurricular)</label>
+                  <textarea
+                    rows={4}
+                    value={formData.historyBeyondText || ''}
+                    onChange={(e) => updateField('historyBeyondText', e.target.value)}
+                  />
+                </div>
+                <div className="meta-field" style={{ marginTop: '10px' }}>
                   <label>A Proud Achievement (National Productivity Awards)</label>
                   <textarea
                     rows={3}
@@ -749,7 +766,7 @@ export default function EditAboutModal({
                         <label>Principal Full Name</label>
                         <input
                           type="text"
-                          value={p.name}
+                          value={p.name || ''}
                           onChange={(e) =>
                             updateArrayItem('pastPrincipals', idx, 'name', e.target.value)
                           }
@@ -762,7 +779,7 @@ export default function EditAboutModal({
                         <label>Exact Service Dates (Tenure)</label>
                         <input
                           type="text"
-                          value={p.tenure}
+                          value={p.tenure || ''}
                           onChange={(e) =>
                             updateArrayItem('pastPrincipals', idx, 'tenure', e.target.value)
                           }
@@ -773,7 +790,7 @@ export default function EditAboutModal({
                         <label>Period (Years)</label>
                         <input
                           type="text"
-                          value={p.period}
+                          value={p.period || ''}
                           onChange={(e) =>
                             updateArrayItem('pastPrincipals', idx, 'period', e.target.value)
                           }
@@ -786,7 +803,7 @@ export default function EditAboutModal({
                         <label>Duration</label>
                         <input
                           type="text"
-                          value={p.duration}
+                          value={p.duration || ''}
                           onChange={(e) =>
                             updateArrayItem('pastPrincipals', idx, 'duration', e.target.value)
                           }
@@ -797,7 +814,7 @@ export default function EditAboutModal({
                         <label>Designation</label>
                         <input
                           type="text"
-                          value={p.designation}
+                          value={p.designation || ''}
                           onChange={(e) =>
                             updateArrayItem('pastPrincipals', idx, 'designation', e.target.value)
                           }

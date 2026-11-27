@@ -53,10 +53,10 @@ export default function About({
       : DEFAULT_SCHOOL_CONFIG.academicSections;
 
   const pastPrincipals =
-    Array.isArray(principals) && principals.length > 0
-      ? principals
-      : Array.isArray(s.pastPrincipals) && s.pastPrincipals.length > 0
+    Array.isArray(s.pastPrincipals) && s.pastPrincipals.length > 0
       ? s.pastPrincipals
+      : Array.isArray(principals) && principals.length > 0
+      ? principals
       : Array.isArray(s.principals) && s.principals.length > 0
       ? s.principals
       : DEFAULT_SCHOOL_CONFIG.pastPrincipals || [];
@@ -543,12 +543,13 @@ export default function About({
                 <span className="heading-bullet" /> Beyond the Classroom (පන්ති කාමරයෙන් ඔබ්බට)
               </h3>
               <div className="history-simple-paragraphs">
-                <p>
-                  Our students continuously achieve national and regional victories across diverse co-curricular and extracurricular fields, building leadership, character, and team spirit.
-                </p>
-                <p>
-                  Key activity spheres include Sports, Athletics and Aesthetics (Track &amp; Field, Stage Drama, Music, Traditional Dance, and Literary Competitions), Science, Technology &amp; Mathematics (STEM innovations, Science Olympiads, and IT exhibitions), Social Sciences (Parliamentary Debating, Commerce Society, and United Nations Assemblies), as well as Cadetting, Astronomy, Chess, Karate, Scouting, and Environmental Pioneers.
-                </p>
+                {(s.historyBeyondText ||
+                  'Our students continuously achieve national and regional victories across diverse co-curricular and extracurricular fields, building leadership, character, and team spirit.\n\nKey activity spheres include Sports, Athletics and Aesthetics (Track & Field, Stage Drama, Music, Traditional Dance, and Literary Competitions), Science, Technology & Mathematics (STEM innovations, Science Olympiads, and IT exhibitions), Social Sciences (Parliamentary Debating, Commerce Society, and United Nations Assemblies), as well as Cadetting, Astronomy, Chess, Karate, Scouting, and Environmental Pioneers.'
+                )
+                  .split(/\r?\n\s*\r?\n/)
+                  .map((para, idx) => (
+                    <p key={idx}>{para}</p>
+                  ))}
               </div>
             </div>
 
@@ -786,7 +787,10 @@ export default function About({
       <EditAboutModal
         isOpen={isAboutModalOpen}
         onClose={() => setIsAboutModalOpen(false)}
-        settings={s}
+        settings={{
+          ...s,
+          pastPrincipals
+        }}
         onSaveSettings={onSaveSettings}
         initialSection={aboutModalInitialTab}
       />

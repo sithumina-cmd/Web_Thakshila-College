@@ -413,6 +413,19 @@ export default function App() {
     const merged = { ...settings, ...updatedFields };
     setSettings(merged);
     setLocalItem('tcg_settings_offline', merged);
+
+    if (Array.isArray(updatedFields.pastPrincipals)) {
+      setPrincipals(updatedFields.pastPrincipals);
+      setLocalItem('tcg_principals_offline', updatedFields.pastPrincipals);
+      try {
+        authFetch('/api/principals', {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(updatedFields.pastPrincipals)
+        }).catch(() => {});
+      } catch {}
+    }
+
     showToast('Website details updated and saved successfully!');
 
     // 2. Asynchronously sync to backend
